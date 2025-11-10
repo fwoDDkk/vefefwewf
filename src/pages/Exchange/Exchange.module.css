@@ -1,0 +1,57 @@
+.container {
+    padding: 16px;
+    min-height: 100vh;
+    background: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 10px;
+    background: #1e1e2f;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .activeTab {
+    background: #ffb400 !important;
+    color: black !important;
+  }
+  
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .swapBtn {
+    align-self: center;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+  }
+  
+  .exchangeBtn {
+    width: 100%;
+    padding: 12px;
+    background: #ffb400;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto;
+  }
+  

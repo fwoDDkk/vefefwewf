@@ -1,0 +1,21 @@
+.item {
+    background: #1e1e2f;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  
+  .done {
+    color: #00ff88;
+  }
+  
+  .pending {
+    color: #ffcc00;
+  }
+  

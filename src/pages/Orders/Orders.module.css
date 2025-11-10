@@ -1,0 +1,12 @@
+.container {
+    padding: 16px;
+    min-height: 100vh;
+    background: #121212;
+    color: white;
+    padding-bottom: 60px;
+  }
+  
+  h2 {
+    margin-bottom: 16px;
+  }
+  

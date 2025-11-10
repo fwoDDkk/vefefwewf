@@ -1,0 +1,67 @@
+.donatelloBtn {
+    display: block;
+    text-align: center;
+    background: #2979ff;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+  
+  .donatelloBtn:hover {
+    background: #1e60d1;
+  }
+  
+  /* === Меню продажу зірок === */
+  .sellBox {
+    margin-top: 15px;
+    background: #111222;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  
+  .infoText {
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .payBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #1b1d2f;
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+  
+  .walletLabel {
+    font-weight: 600;
+    color: #ffdd55;
+  }
+  
+  .copyBtn {
+    background: #292c4f;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .copyBtn:hover {
+    background: #3a3d66;
+  }
+  
+  .note {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 8px;
+  }
+  

@@ -1,0 +1,76 @@
+.box {
+    background: #1e1e2f;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: white;
+  }
+  
+  .select {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #2a2a3a;
+    color: white;
+  }
+  
+  .sendBox {
+    padding: 10px;
+    background: #2a2a3a;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .box {
+    background: #1e1e2f;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+  }
+  
+  .select {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #2a2a3a;
+    color: white;
+  }
+  
+  .sendBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #2a2a3a;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .address {
+    background: #111;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #00e676;
+  }
+  
+  .paidBtn {
+    padding: 10px;
+    font-size: 15px;
+    background: #ffb400;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .success {
+    color: #00e676;
+    font-size: 14px;
+  }
+  

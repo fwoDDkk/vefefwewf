@@ -1,0 +1,93 @@
+.tokenInput {
+    background: #1e1e2f;
+    padding: 14px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  
+  .labelRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .label {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .maxBtn {
+    background: none;
+    border: none;
+    color: #ffb400;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .inputWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #11111a;
+    border-radius: 12px;
+    padding: 10px 12px;
+    position: relative;
+  }
+  
+  .inputWrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: white;
+    flex: 1;
+  }
+  
+  .token {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2a2a3a;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .token img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background: #2a2a3a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    z-index: 10;
+  }
+  
+  .dropdownItem {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .dropdownItem:hover {
+    background: #3b3b4a;
+  }
+  
