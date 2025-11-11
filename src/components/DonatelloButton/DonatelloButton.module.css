@@ -1,67 +1,218 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .donatelloBtn {
-    display: block;
-    text-align: center;
-    background: #2979ff;
-    color: white;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-top: 15px;
-    text-decoration: none;
-    transition: 0.2s ease;
+  display: block;
+  text-align: center;
+  background: linear-gradient(90deg, #2979ff, #00aaff);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 15px;
+  text-decoration: none;
+  transition: 0.25s ease;
+  box-shadow: 0 0 10px rgba(0, 136, 255, 0.4);
+}
+
+.donatelloBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(0, 136, 255, 0.6);
+}
+
+/* 🔒 Кнопка вимкнена */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  background: #555;
+  box-shadow: none;
+}
+
+.managerBox {
+  margin-top: 14px;
+  text-align: center;
+  background: #111222;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.infoText {
+  color: #ccc;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.managerLink {
+  background: linear-gradient(90deg, #00aaff, #0077ff);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.managerLink:hover {
+  background: linear-gradient(90deg, #0077ff, #00aaff);
+}
+
+/* === Продаж зірок === */
+.sellBox {
+  margin-top: 15px;
+  background: #111222;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+
+.payBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: #1b1d2f;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.walletLabel {
+  font-weight: 600;
+  color: #ffdd55;
+}
+
+.copyBtn {
+  background: #292c4f;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.copyBtn:hover {
+  background: #3a3d66;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 10px 0;
+}
+
+/* === Toast (повідомлення) === */
+.toast {
+  background: rgba(30, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  color: #00aaff;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .donatelloBtn:hover {
-    background: #1e60d1;
+  15% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* === Меню продажу зірок === */
-  .sellBox {
-    margin-top: 15px;
-    background: #111222;
-    border-radius: 12px;
-    padding: 14px;
-    text-align: center;
+  85% {
+    opacity: 1;
   }
-  
-  .infoText {
-    color: #ccc;
-    margin-bottom: 10px;
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .payBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    background: #1b1d2f;
-    border-radius: 10px;
-    padding: 8px 12px;
+}
+/* === Блок менеджера === */
+/* === Блок менеджера === */
+.managerBox {
+  margin-top: 20px;
+  background: linear-gradient(145deg, #0e0f1f, #14162a);
+  border: 1px solid rgba(0, 140, 255, 0.3);
+  border-radius: 16px;
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 140, 255, 0.15);
+  animation: fadeInBox 0.5s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.managerBox:hover {
+  box-shadow: 0 0 25px rgba(0, 160, 255, 0.25);
+  border-color: rgba(0, 160, 255, 0.5);
+}
+
+@keyframes fadeInBox {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .walletLabel {
-    font-weight: 600;
-    color: #ffdd55;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .copyBtn {
-    background: #292c4f;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
-  .copyBtn:hover {
-    background: #3a3d66;
-  }
-  
-  .note {
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 8px;
-  }
-  
+}
+
+.infoText {
+  color: #d0d8ff;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(0, 100, 255, 0.3);
+}
+
+/* === Кнопка "Зв’язатись з менеджером" === */
+.managerLink {
+  display: inline-block;
+  background: linear-gradient(90deg, #007bff, #00b3ff);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.managerLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.6s ease;
+}
+
+.managerLink:hover::before {
+  left: 100%;
+}
+
+.managerLink:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.6);
+}
+
+/* === Текст під кнопкою (курс) === */
+.rateInfo {
+  color: #ffc94a;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}

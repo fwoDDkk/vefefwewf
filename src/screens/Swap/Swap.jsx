@@ -4,8 +4,6 @@ import TokenInput from '../../components/TokenInput/TokenInput'
 import BottomNav from '../../components/BottomNav/BottomNav'
 import DonatelloButton from '../../components/DonatelloButton/DonatelloButton'
 
-const rate = 10 // курс: 1 STAR = 10 UAH
-
 export default function Swap() {
   const [fromToken, setFromToken] = useState('UAH')
   const [toToken, setToToken] = useState('STAR')
@@ -13,19 +11,29 @@ export default function Swap() {
   const [toAmount, setToAmount] = useState('')
   const [mode, setMode] = useState('buy') // buy або sell
 
-  // визначаємо режим автоматично при зміні токенів
+  // === Курси ===
+  const buyRate = 149.99 / 200 // 0.75 грн за 1 зірку
+  const sellRate = 80 / 200 // 0.4 грн за 1 зірку
+  const handleSell = async () => {
+    const tg = window.Telegram.WebApp
+    const userId = tg.initDataUnsafe.user?.id
+    const username = tg.initDataUnsafe.user?.username
+    const stars = Number(toAmount)
+  
+    await fetch("https://your-backend-domain.com/api/pay/sell", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, username, stars })
+    })
+  }
+  
+  // Визначення режиму залежно від напрямку
   useEffect(() => {
     if (toToken === 'STAR') setMode('buy')
     else if (fromToken === 'STAR') setMode('sell')
   }, [fromToken, toToken])
 
-  const swapTokens = () => {
-    const temp = fromToken
-    setFromToken(toToken)
-    setToToken(temp)
-    setFromAmount(toAmount)
-    setToAmount(fromAmount)
-  }
+  const getRate = () => (mode === 'buy' ? buyRate : sellRate)
 
   const handleFromChange = (value) => {
     setFromAmount(value)
@@ -34,8 +42,11 @@ export default function Swap() {
       return
     }
 
+    const rate = getRate()
     const converted =
-      fromToken === 'UAH' ? (value / rate).toFixed(2) : (value * rate).toFixed(2)
+      fromToken === 'UAH'
+        ? (value / rate).toFixed(2)
+        : (value * rate).toFixed(2)
     setToAmount(converted)
   }
 
@@ -46,9 +57,20 @@ export default function Swap() {
       return
     }
 
+    const rate = getRate()
     const converted =
-      toToken === 'UAH' ? (value / rate).toFixed(2) : (value * rate).toFixed(2)
+      toToken === 'UAH'
+        ? (value / rate).toFixed(2)
+        : (value * rate).toFixed(2)
     setFromAmount(converted)
+  }
+
+  const swapTokens = () => {
+    const temp = fromToken
+    setFromToken(toToken)
+    setToToken(temp)
+    setFromAmount(toAmount)
+    setToAmount(fromAmount)
   }
 
   return (
@@ -74,11 +96,12 @@ export default function Swap() {
           direction="to"
         />
 
-        <div className={styles.rate}>
-          Курс: <strong>1 STAR = {rate} UAH</strong>
-        </div>
+        {/* <div className={styles.rate}>
+          💰 Курс: <strong>
+            200 ⭐ = {mode === 'buy' ? '149.99 грн' : '80 грн'}
+          </strong>
+        </div> */}
 
-        {/* кнопка/меню змінюється динамічно */}
         <DonatelloButton
           amount={fromAmount}
           token={fromToken}
@@ -89,6 +112,5 @@ export default function Swap() {
 
       <BottomNav />
     </div>
-    
   )
 }
