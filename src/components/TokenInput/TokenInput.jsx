@@ -1,37 +1,50 @@
-import React, { useState } from 'react'
-import styles from './TokenInput.module.css'
-import uahIcon from '../../assets/uah.svg'
-import usdIcon from '../../assets/usd.svg'
-import rubIcon from '../../assets/rub.svg'
-import starIcon from '../../assets/star.svg'
+import React, { useState } from "react";
+import styles from "./TokenInput.module.css";
+import uahIcon from "../../assets/uah.svg";
+import usdIcon from "../../assets/usd.svg";
+import rubIcon from "../../assets/rub.svg";
+import starIcon from "../../assets/star.svg";
 
 const icons = {
   UAH: uahIcon,
   USD: usdIcon,
   RUB: rubIcon,
-  STAR: starIcon
-}
+  STAR: starIcon,
+};
 
-const TokenInput = ({ token, amount, onChange, onSelectToken, direction }) => {
-  const [showMenu, setShowMenu] = useState(false)
+const TokenInput = ({
+  token,
+  amount,
+  onChange,
+  onSelectToken,
+  direction,
+  label, // 👈 тепер приймає label з Swap.jsx
+}) => {
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleSelect = (val) => {
-    setShowMenu(false)
-    if (onSelectToken) onSelectToken(val)
-  }
+    setShowMenu(false);
+    if (onSelectToken) onSelectToken(val);
+  };
 
-  const isStar = token === 'STAR'
-  const tokenList = isStar ? ['STAR'] : ['UAH', 'USD', 'RUB']
+  const isStar = token === "STAR";
+  const tokenList = isStar ? ["STAR"] : ["UAH", "USD", "RUB"];
 
   return (
     <div className={styles.tokenInput}>
+      {/* === Верхній рядок з підписом === */}
       <div className={styles.labelRow}>
         <span className={styles.label}>
-          {direction === 'from' ? 'Ви віддаєте' : 'Ви отримуєте (⭐ зірки)'}
+          {label
+            ? label // 👈 якщо label передано — показуємо його
+            : direction === "from"
+            ? "Ви віддаєте"
+            : "Ви отримуєте"}
         </span>
-        {direction === 'from' && <span className={styles.maxBtn}>MAX</span>}
+        {direction === "from" && <span className={styles.maxBtn}>MAX</span>}
       </div>
 
+      {/* === Поле вводу === */}
       <div className={styles.inputWrapper}>
         <input
           type="text"
@@ -40,11 +53,16 @@ const TokenInput = ({ token, amount, onChange, onSelectToken, direction }) => {
           onChange={(e) => onChange(e.target.value)}
         />
 
-        <div className={styles.token} onClick={() => !isStar && setShowMenu(!showMenu)}>
+        {/* === Вибір токена === */}
+        <div
+          className={styles.token}
+          onClick={() => !isStar && setShowMenu(!showMenu)}
+        >
           <img src={icons[token]} alt={token} />
           <span>{token}</span>
         </div>
 
+        {/* === Випадаюче меню валют === */}
         {showMenu && (
           <div className={styles.dropdown}>
             {tokenList.map((t) => (
@@ -61,7 +79,7 @@ const TokenInput = ({ token, amount, onChange, onSelectToken, direction }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TokenInput
+export default TokenInput;
