@@ -11,6 +11,7 @@ export default function App() {
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
+    console.log("Telegram WebApp object:", window.Telegram?.WebApp);
 
     if (!tg) {
       console.error("❌ Telegram WebApp not found");
