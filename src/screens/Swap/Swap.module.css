@@ -73,3 +73,22 @@
     height: 42px;
   }
 }
+.managerBtn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #ffaa00, #ffcc33);
+  color: #0b0b0b;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 0 12px rgba(255, 200, 0, 0.6);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.managerBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(255, 220, 0, 0.9);
+}

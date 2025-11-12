@@ -151,12 +151,16 @@ import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
 
+// 🧩 Вкажи username менеджера тут
+const MANAGER_USERNAME = "StarcManager"; // ⚠️ заміни на свій
+
 export default function Swap({ user }) {
   const [fromToken, setFromToken] = useState("UAH");
   const [toToken, setToToken] = useState("STAR");
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState("");
   const [mode, setMode] = useState("buy");
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const RATES = { BUY: 149.99 / 200, SELL: 80 / 200 };
 
@@ -197,7 +201,6 @@ export default function Swap({ user }) {
       const stars = Number(fromAmount);
       if (!stars || stars <= 0) return alert("⚠️ Вкажіть кількість зірок");
 
-      // 🔹 Запит до бекенду
       const res = await axios.post(`${API_BASE}/api/pay/sell`, {
         telegramId: user.telegramId,
         username: user.username,
@@ -215,24 +218,29 @@ export default function Swap({ user }) {
         return;
       }
 
-      // 🔹 Відкриваємо оплату через Telegram API
       if (window.Telegram?.WebApp?.openInvoice) {
         window.Telegram.WebApp.openInvoice(link, (status) => {
           console.log("Invoice status:", status);
           if (status === "paid") {
             alert(`✅ Оплата успішна! Продано ${stars}⭐`);
+            setPaymentSuccess(true); // 🎯 показуємо кнопку менеджера
           } else if (status === "cancelled") {
             alert("❌ Оплата скасована");
           }
         });
       } else {
-        // якщо Telegram API не доступний (тест у браузері)
         window.open(link, "_blank");
       }
     } catch (err) {
       console.error("Sell error:", err);
       alert("❌ Помилка при створенні інвойсу");
     }
+  };
+
+  // === 💬 Відкрити чат з менеджером ===
+  const handleContactManager = () => {
+    const link = `https://t.me/${MANAGER_USERNAME}`;
+    window.open(link, "_blank");
   };
 
   return (
@@ -264,9 +272,20 @@ export default function Swap({ user }) {
             className={styles.submitBtn}
           />
         ) : (
-          <button onClick={handleSell} className={styles.submitBtn}>
-            Продати зірки
-          </button>
+          <>
+            <button onClick={handleSell} className={styles.submitBtn}>
+              Продати зірки
+            </button>
+
+            {paymentSuccess && (
+              <button
+                onClick={handleContactManager}
+                className={styles.managerBtn}
+              >
+                💬 Написати менеджеру
+              </button>
+            )}
+          </>
         )}
       </div>
       <BottomNav />
