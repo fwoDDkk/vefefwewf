@@ -4,7 +4,7 @@ import axios from "axios";
 import Swap from "./screens/Swap/Swap";
 import Orders from "./screens/Orders/Orders";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://oneback-d62p.onrender.com";
+const API_BASE = "https://oneback-d62p.onrender.com";
 
 export default function App() {
   const [userData, setUserData] = useState(null);
