@@ -86,9 +86,9 @@ export default function DonatelloButton({ amount, token, mode }) {
   if (mode === "sell") {
     return (
       <div className={styles.section}>
-        <p className={`${styles.rateInfoTop} ${styles.sellRate}`}>
+        {/* <p className={`${styles.rateInfoTop} ${styles.sellRate}`}>
           💰 Курс: 200 ⭐ = 80 грн
-        </p>
+        </p> */}
 
         <button className={styles.sellBtn}>Продати зірки</button>
 
