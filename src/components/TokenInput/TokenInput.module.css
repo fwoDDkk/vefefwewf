@@ -6,6 +6,8 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
+    width: 100%;           /* ✅ обов’язково, щоб розтягувався */
+  box-sizing: border-box;
   }
   
   .labelRow {
@@ -36,6 +38,9 @@
     border-radius: 12px;
     padding: 10px 12px;
     position: relative;
+
+    width: 100%;           /* ✅ обов’язково, щоб розтягувався */
+  box-sizing: border-box;
   }
   
   .inputWrapper input {
