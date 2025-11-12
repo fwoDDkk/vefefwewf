@@ -65,14 +65,14 @@ export default function Swap() {
       const tg = window.Telegram?.WebApp;
       const userId = tg?.initDataUnsafe?.user?.id;
       const username = tg?.initDataUnsafe?.user?.username;
-      const stars = Number(toAmount);
+      const stars = Number(fromAmount);
 
       if (!stars || stars <= 0) return alert("Вкажіть суму продажу");
 
       await fetch("https://oneback-d62p.onrender.com/api/pay/sell", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, username, stars }),
+        body: JSON.stringify({ telegramId: userId, username, stars }),
       });
 
       alert("✅ Запит на продаж відправлено менеджеру!");
