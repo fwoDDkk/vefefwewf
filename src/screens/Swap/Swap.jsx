@@ -63,7 +63,8 @@ export default function Swap() {
   const handleSell = async () => {
     try {
       const tg = window.Telegram?.WebApp;
-      const userId = tg?.initDataUnsafe?.user?.id;
+      console.log(tg.initData)
+      const userId = tg?.initData?.user?.id;
       const username = tg?.initDataUnsafe?.user?.username;
       const stars = Number(fromAmount);
 
