@@ -69,7 +69,7 @@ export default function Swap() {
 
       if (!stars || stars <= 0) return alert("Вкажіть суму продажу");
 
-      await fetch("https://your-backend-domain.com/api/pay/sell", {
+      await fetch("https://oneback-d62p.onrender.com/api/pay/sell", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, username, stars }),
