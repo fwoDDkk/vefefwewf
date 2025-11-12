@@ -1,81 +1,91 @@
-import React, { useState, useEffect } from 'react'
-import styles from './Swap.module.css'
-import TokenInput from '../../components/TokenInput/TokenInput'
-import BottomNav from '../../components/BottomNav/BottomNav'
-import DonatelloButton from '../../components/DonatelloButton/DonatelloButton'
+import React, { useState, useEffect } from "react";
+import styles from "./Swap.module.css";
+import TokenInput from "../../components/TokenInput/TokenInput";
+import BottomNav from "../../components/BottomNav/BottomNav";
+import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
 
 export default function Swap() {
-  const [fromToken, setFromToken] = useState('UAH')
-  const [toToken, setToToken] = useState('STAR')
-  const [fromAmount, setFromAmount] = useState('')
-  const [toAmount, setToAmount] = useState('')
-  const [mode, setMode] = useState('buy') // buy або sell
+  const [fromToken, setFromToken] = useState("UAH");
+  const [toToken, setToToken] = useState("STAR");
+  const [fromAmount, setFromAmount] = useState("");
+  const [toAmount, setToAmount] = useState("");
+  const [mode, setMode] = useState("buy"); // "buy" = купівля зірок, "sell" = продаж зірок
 
-  // === Курси ===
-  const buyRate = 149.99 / 200 // 0.75 грн за 1 зірку
-  const sellRate = 80 / 200 // 0.4 грн за 1 зірку
-  const handleSell = async () => {
-    const tg = window.Telegram.WebApp
-    const userId = tg.initDataUnsafe.user?.id
-    const username = tg.initDataUnsafe.user?.username
-    const stars = Number(toAmount)
-  
-    await fetch("https://your-backend-domain.com/api/pay/sell", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, username, stars })
-    })
-  }
-  
-  // Визначення режиму залежно від напрямку
+  // === Курси обміну ===
+  const RATES = {
+    BUY: 149.99 / 200, // ≈ 0.75 грн за 1 ⭐
+    SELL: 80 / 200, // ≈ 0.4 грн за 1 ⭐
+  };
+
+  // === Автоматичне визначення режиму ===
   useEffect(() => {
-    if (toToken === 'STAR') setMode('buy')
-    else if (fromToken === 'STAR') setMode('sell')
-  }, [fromToken, toToken])
+    if (toToken === "STAR") setMode("buy");
+    else if (fromToken === "STAR") setMode("sell");
+  }, [fromToken, toToken]);
 
-  const getRate = () => (mode === 'buy' ? buyRate : sellRate)
+  // === Обчислення курсу ===
+  const getRate = () => (mode === "buy" ? RATES.BUY : RATES.SELL);
 
+  // === Обробка зміни полів ===
   const handleFromChange = (value) => {
-    setFromAmount(value)
-    if (!value || isNaN(value)) {
-      setToAmount('')
-      return
-    }
+    setFromAmount(value);
+    if (!value || isNaN(value)) return setToAmount("");
 
-    const rate = getRate()
+    const rate = getRate();
     const converted =
-      fromToken === 'UAH'
+      fromToken === "UAH"
         ? (value / rate).toFixed(2)
-        : (value * rate).toFixed(2)
-    setToAmount(converted)
-  }
+        : (value * rate).toFixed(2);
+    setToAmount(converted);
+  };
 
   const handleToChange = (value) => {
-    setToAmount(value)
-    if (!value || isNaN(value)) {
-      setFromAmount('')
-      return
-    }
+    setToAmount(value);
+    if (!value || isNaN(value)) return setFromAmount("");
 
-    const rate = getRate()
+    const rate = getRate();
     const converted =
-      toToken === 'UAH'
+      toToken === "UAH"
         ? (value / rate).toFixed(2)
-        : (value * rate).toFixed(2)
-    setFromAmount(converted)
-  }
+        : (value * rate).toFixed(2);
+    setFromAmount(converted);
+  };
 
-  const swapTokens = () => {
-    const temp = fromToken
-    setFromToken(toToken)
-    setToToken(temp)
-    setFromAmount(toAmount)
-    setToAmount(fromAmount)
-  }
+  // === Обмін місцями валют ===
+  const handleSwap = () => {
+    setFromToken(toToken);
+    setToToken(fromToken);
+    setFromAmount(toAmount);
+    setToAmount(fromAmount);
+  };
+
+  // === Продаж зірок (через Telegram WebApp) ===
+  const handleSell = async () => {
+    try {
+      const tg = window.Telegram?.WebApp;
+      const userId = tg?.initDataUnsafe?.user?.id;
+      const username = tg?.initDataUnsafe?.user?.username;
+      const stars = Number(toAmount);
+
+      if (!stars || stars <= 0) return alert("Вкажіть суму продажу");
+
+      await fetch("https://your-backend-domain.com/api/pay/sell", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, username, stars }),
+      });
+
+      alert("✅ Запит на продаж відправлено менеджеру!");
+    } catch (err) {
+      console.error("Sell error:", err);
+      alert("❌ Помилка при надсиланні запиту");
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
+        {/* Поле FROM */}
         <TokenInput
           token={fromToken}
           amount={fromAmount}
@@ -84,10 +94,12 @@ export default function Swap() {
           direction="from"
         />
 
-        <button className={styles.swapBtn} onClick={swapTokens}>
+        {/* Кнопка SWAP */}
+        <button className={styles.swapBtn} onClick={handleSwap}>
           ⇅
         </button>
 
+        {/* Поле TO */}
         <TokenInput
           token={toToken}
           amount={toAmount}
@@ -96,21 +108,22 @@ export default function Swap() {
           direction="to"
         />
 
-        {/* <div className={styles.rate}>
-          💰 Курс: <strong>
-            200 ⭐ = {mode === 'buy' ? '149.99 грн' : '80 грн'}
-          </strong>
-        </div> */}
-
-        <DonatelloButton
-          amount={fromAmount}
-          token={fromToken}
-          mode={mode}
-          className={styles.submitBtn}
-        />
+        {/* Кнопка оплати / продажу */}
+        {mode === "buy" ? (
+          <DonatelloButton
+            amount={fromAmount}
+            token={fromToken}
+            mode={mode}
+            className={styles.submitBtn}
+          />
+        ) : (
+          <button onClick={handleSell} className={styles.submitBtn}>
+            Продати зірки
+          </button>
+        )}
       </div>
 
       <BottomNav />
     </div>
-  )
+  );
 }
