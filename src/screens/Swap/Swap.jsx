@@ -135,34 +135,38 @@ export default function Swap({ user }) {
   label={toLabel}
 />
 
-{/* === КУРС ПІД ІНПУТАМИ === */}
-<p className={styles.rateInfo}>
-  {mode === "buy"
-    ? "💰 Курс: 200 ⭐ = 149.99 грн"
-    : "💰 Курс: 200 ⭐ = 80 грн"}
-</p>
+{/* === Блок курсу + кнопки (без gap) === */}
+<div className={styles.compactSection}>
+  <p className={styles.rateInfo}>
+    {mode === "buy"
+      ? "💰 Курс: 200 ⭐ = 149.99 грн"
+      : "💰 Курс: 200 ⭐ = 80 грн"}
+  </p>
 
-{/* Динамічна кнопка */}
-{mode === "buy" ? (
-  <DonatelloButton
-    amount={fromAmount}
-    token={fromToken}
-    mode={mode}
-    className={styles.submitBtn}
-  />
-) : (
-  <>
-    <button onClick={handleSell} className={styles.submitBtn}>
-      Продати зірки
-    </button>
-
-    {paymentSuccess && (
-      <button onClick={handleContactManager} className={styles.managerBtn}>
-        💬 Написати менеджеру
+  {mode === "buy" ? (
+    <DonatelloButton
+      amount={fromAmount}
+      token={fromToken}
+      mode={mode}
+      className={styles.submitBtn}
+    />
+  ) : (
+    <>
+      <button onClick={handleSell} className={styles.submitBtn}>
+        Продати зірки
       </button>
-    )}
-  </>
-)}
+
+      {paymentSuccess && (
+        <button
+          onClick={handleContactManager}
+          className={styles.managerBtn}
+        >
+          💬 Написати менеджеру
+        </button>
+      )}
+    </>
+  )}
+</div>
       </div>
       <BottomNav />
     </div>
