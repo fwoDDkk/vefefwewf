@@ -13,10 +13,10 @@ export default function InputCard({
 }) {
   return (
     <div className={styles.card}>
-      <div className={styles.labelRow}>
+      {/* <div className={styles.labelRow}>
         <label>{label}</label>
         {!disabled && <button className={styles.maxBtn} onClick={() => onAmountChange('100')}>MAX</button>}
-      </div>
+      </div> */}
 
       <div className={styles.inputRow}>
         <input

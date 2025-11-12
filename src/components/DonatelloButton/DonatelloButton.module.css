@@ -325,3 +325,64 @@
   margin-top: 3px;
   text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
 }
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px; /* мінімальний відступ */
+}
+
+/* === Курс одразу після інпутів === */
+.rateInfoTop {
+  color: #ffc94a;
+  margin: 6px 0 4px 0; /* щільний */
+  font-size: 0.85rem;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}
+
+/* === Продаж (бірюзовий колір курсу) === */
+.sellRate {
+  color: #00ffd0;
+  text-shadow: 0 0 10px rgba(0, 255, 213, 0.4);
+}
+
+/* === Кнопка продажу === */
+.sellBtn {
+  background: #ffc94a;
+  color: #111;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  width: 85%;
+  max-width: 280px;
+}
+.sellBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 221, 100, 0.5);
+}
+
+/* === Мінімальна покупка === */
+.warnText {
+  color: #ff5050;
+  font-size: 0.82rem;
+  margin-top: 3px;
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
+}
+
+/* === Toast === */
+.toast {
+  background: rgba(30, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  color: #00aaff;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-top: 6px;
+  animation: fadeInOut 3s ease forwards;
+}

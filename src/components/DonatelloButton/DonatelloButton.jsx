@@ -5,11 +5,13 @@ export default function DonatelloButton({ amount, token, mode }) {
   const [showManager, setShowManager] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
+  // === Константи ===
   const RATES = { BUY: 149.99 / 200, SELL: 80 / 200 };
   const MIN_STARS = 200;
   const MANAGER = "@StarcManager";
   const managerLink = `https://t.me/${MANAGER.replace("@", "")}`;
 
+  // === Логіка ===
   const isBuying = mode === "buy";
   const rate = isBuying ? RATES.BUY : RATES.SELL;
   const stars = token === "UAH" ? (amount / rate).toFixed(2) : amount;
@@ -36,8 +38,8 @@ export default function DonatelloButton({ amount, token, mode }) {
   if (isBuying) {
     return (
       <div className={styles.section}>
-        {/* Курс над кнопкою */}
-        <p className={styles.rateInfo}>💰 Курс: 200 ⭐ = 149.99 грн</p>
+        {/* курс одразу після інпутів */}
+        <p className={styles.rateInfoTop}>💰 Курс: 200 ⭐ = 149.99 грн</p>
 
         <a
           href={enough ? donatelloLink : "#"}
@@ -84,8 +86,7 @@ export default function DonatelloButton({ amount, token, mode }) {
   if (mode === "sell") {
     return (
       <div className={styles.section}>
-        {/* Курс над кнопкою */}
-        <p className={`${styles.rateInfo} ${styles.sellRate}`}>
+        <p className={`${styles.rateInfoTop} ${styles.sellRate}`}>
           💰 Курс: 200 ⭐ = 80 грн
         </p>
 
