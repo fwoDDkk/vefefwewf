@@ -277,3 +277,51 @@
   color: #00ffd0;
   text-shadow: 0 0 10px rgba(0, 255, 213, 0.3);
 }
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* курс над кнопкою */
+.rateInfo {
+  color: #ffc94a;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}
+
+/* курс для продажу */
+.sellRate {
+  color: #00ffd0;
+  text-shadow: 0 0 10px rgba(0, 255, 213, 0.4);
+}
+
+/* кнопка продажу */
+.sellBtn {
+  background: #ffc94a;
+  color: #111;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  width: 85%;
+  max-width: 280px;
+}
+.sellBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 221, 100, 0.5);
+}
+
+/* мінімальна покупка */
+.warnText {
+  color: #ff5050;
+  font-size: 0.85rem;
+  margin-top: 3px;
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
+}
