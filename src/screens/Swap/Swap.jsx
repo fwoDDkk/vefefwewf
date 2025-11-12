@@ -142,7 +142,7 @@
 //     </div>
 //   );
 // }
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Swap.module.css";
 import TokenInput from "../../components/TokenInput/TokenInput";
@@ -188,21 +188,50 @@ export default function Swap({ user }) {
     setToAmount(fromAmount);
   };
 
+  // === 🪙 Продаж зірок через Telegram ===
   const handleSell = async () => {
     try {
-      const stars = Number(fromAmount);
-      if (!stars || stars <= 0) return alert("Вкажіть кількість зірок");
+      const tg = window.Telegram?.WebApp;
+      tg?.ready();
 
-      await axios.post(`${API_BASE}/api/pay/sell`, {
+      const stars = Number(fromAmount);
+      if (!stars || stars <= 0) return alert("⚠️ Вкажіть кількість зірок");
+
+      // 🔹 Запит до бекенду
+      const res = await axios.post(`${API_BASE}/api/pay/sell`, {
         telegramId: user.telegramId,
         username: user.username,
         stars,
       });
 
-      alert("✅ Запит на продаж відправлено менеджеру!");
+      if (!res.data.success) {
+        alert(`❌ Помилка: ${res.data.message}`);
+        return;
+      }
+
+      const link = res.data.invoice_link;
+      if (!link) {
+        alert("⚠️ Інвойс не отримано від сервера");
+        return;
+      }
+
+      // 🔹 Відкриваємо оплату через Telegram API
+      if (window.Telegram?.WebApp?.openInvoice) {
+        window.Telegram.WebApp.openInvoice(link, (status) => {
+          console.log("Invoice status:", status);
+          if (status === "paid") {
+            alert(`✅ Оплата успішна! Продано ${stars}⭐`);
+          } else if (status === "cancelled") {
+            alert("❌ Оплата скасована");
+          }
+        });
+      } else {
+        // якщо Telegram API не доступний (тест у браузері)
+        window.open(link, "_blank");
+      }
     } catch (err) {
       console.error("Sell error:", err);
-      alert("❌ Помилка при надсиланні запиту");
+      alert("❌ Помилка при створенні інвойсу");
     }
   };
 
@@ -216,7 +245,9 @@ export default function Swap({ user }) {
           onSelectToken={setFromToken}
           direction="from"
         />
-        <button className={styles.swapBtn} onClick={handleSwap}>⇅</button>
+        <button className={styles.swapBtn} onClick={handleSwap}>
+          ⇅
+        </button>
         <TokenInput
           token={toToken}
           amount={toAmount}
