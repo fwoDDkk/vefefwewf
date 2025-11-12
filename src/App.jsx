@@ -11,46 +11,30 @@ export default function App() {
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
-    console.log("Telegram WebApp object:", window.Telegram?.WebApp);
-
-    if (!tg) {
-      console.error("❌ Telegram WebApp not found");
-      setUserData({ error: true });
-      return;
+    console.log("📱 Telegram WebApp object:", tg);
+    
+    if (tg?.initData) {
+      console.log("✅ initData:", tg.initData);
+    } else {
+      console.log("❌ initData відсутнє (ймовірно не WebApp або відкрито не з Telegram)");
     }
-
-    tg.ready();
-
-    const waitForInitData = async () => {
-      let tries = 0;
-      while (!tg.initData && tries < 10) {
-        console.log(`⏳ Waiting for initData... (${tries + 1}/10)`);
-        await new Promise(res => setTimeout(res, 300));
-        tries++;
-      }
-
-      if (!tg.initData) {
-        console.error("❌ initData still missing after 10 tries");
-        setUserData({ error: true });
-        return;
-      }
-
-      try {
-        const res = await axios.post(`${API_BASE}/api/auth`, {
-          initData: tg.initData,
-        });
-
-        localStorage.setItem("authToken", res.data.token);
-        setUserData(res.data.user);
-        console.log("✅ Auth success:", res.data.user);
-      } catch (err) {
-        console.error("❌ Auth error:", err.response?.data || err.message);
-        setUserData({ error: true });
-      }
-    };
-
-    waitForInitData();
+  
+    // 👇 тестовий варіант для візуального логування
+    const el = document.createElement("div");
+    el.style.position = "fixed";
+    el.style.bottom = "10px";
+    el.style.left = "10px";
+    el.style.color = "white";
+    el.style.background = "rgba(0,0,0,0.7)";
+    el.style.padding = "5px 10px";
+    el.style.borderRadius = "10px";
+    el.style.zIndex = 9999;
+    el.textContent = tg?.initData
+      ? "✅ WebApp працює"
+      : "❌ WebApp не ініціалізований";
+    document.body.appendChild(el);
   }, []);
+  
 
   if (userData === null) return <div>🔄 Завантаження...</div>;
   if (userData?.error) return <div>Запустіть застосунок через Telegram</div>;
