@@ -101,3 +101,11 @@
   letter-spacing: 0.5px;
   text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
 }
+.rateInfo {
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  text-align: center;
+  color: #ffc94a;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}

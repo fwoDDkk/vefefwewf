@@ -41,7 +41,7 @@ const TokenInput = ({
             ? "Ви віддаєте"
             : "Ви отримуєте"}
         </span>
-        {direction === "from" && <span className={styles.maxBtn}>MAX</span>}
+        {/* {direction === "from" && <span className={styles.maxBtn}>MAX</span>} */}
       </div>
 
       {/* === Поле вводу === */}

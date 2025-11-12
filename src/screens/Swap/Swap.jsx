@@ -127,38 +127,42 @@ export default function Swap({ user }) {
 
         {/* TO */}
         <TokenInput
-          token={toToken}
-          amount={toAmount}
-          onChange={handleToChange}
-          onSelectToken={setToToken}
-          direction="to"
-          label={toLabel}
-        />
+  token={toToken}
+  amount={toAmount}
+  onChange={handleToChange}
+  onSelectToken={setToToken}
+  direction="to"
+  label={toLabel}
+/>
 
-        {/* Динамічна кнопка */}
-        {mode === "buy" ? (
-          <DonatelloButton
-            amount={fromAmount}
-            token={fromToken}
-            mode={mode}
-            className={styles.submitBtn}
-          />
-        ) : (
-          <>
-            <button onClick={handleSell} className={styles.submitBtn}>
-              Продати зірки
-            </button>
+{/* === КУРС ПІД ІНПУТАМИ === */}
+<p className={styles.rateInfo}>
+  {mode === "buy"
+    ? "💰 Курс: 200 ⭐ = 149.99 грн"
+    : "💰 Курс: 200 ⭐ = 80 грн"}
+</p>
 
-            {paymentSuccess && (
-              <button
-                onClick={handleContactManager}
-                className={styles.managerBtn}
-              >
-                💬 Написати менеджеру
-              </button>
-            )}
-          </>
-        )}
+{/* Динамічна кнопка */}
+{mode === "buy" ? (
+  <DonatelloButton
+    amount={fromAmount}
+    token={fromToken}
+    mode={mode}
+    className={styles.submitBtn}
+  />
+) : (
+  <>
+    <button onClick={handleSell} className={styles.submitBtn}>
+      Продати зірки
+    </button>
+
+    {paymentSuccess && (
+      <button onClick={handleContactManager} className={styles.managerBtn}>
+        💬 Написати менеджеру
+      </button>
+    )}
+  </>
+)}
       </div>
       <BottomNav />
     </div>
