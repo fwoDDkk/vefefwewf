@@ -39,7 +39,7 @@ export default function DonatelloButton({ amount, token, mode }) {
     return (
       <div className={styles.section}>
         {/* курс одразу після інпутів */}
-        <p className={styles.rateInfoTop}>💰 Курс: 200 ⭐ = 149.99 грн</p>
+        {/* <p className={styles.rateInfoTop}>💰 Курс: 200 ⭐ = 149.99 грн</p> */}
 
         <a
           href={enough ? donatelloLink : "#"}
