@@ -6,7 +6,7 @@ import BottomNav from "../../components/BottomNav/BottomNav";
 import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
-const MANAGER_USERNAME = "StarcManager"; // ⚠️ без @ !
+const MANAGER_USERNAME = "StarcManager"; // ⚠️ без @
 
 export default function Swap({ user }) {
   const [fromToken, setFromToken] = useState("UAH");
@@ -48,7 +48,6 @@ export default function Swap({ user }) {
     setToToken(newTo);
     setFromAmount(toAmount);
     setToAmount(fromAmount);
-    // одразу оновлюємо режим
     if (newTo === "STAR") setMode("buy");
     else if (newFrom === "STAR") setMode("sell");
   };
@@ -104,6 +103,10 @@ export default function Swap({ user }) {
     window.open(link, "_blank");
   };
 
+  // === 🪄 Тексти для "Ви віддаєте / отримуєте" ===
+  const fromLabel = mode === "buy" ? "Ви віддаєте (₴ гривні)" : "Ви віддаєте (⭐ зірки)";
+  const toLabel = mode === "buy" ? "Ви отримуєте (⭐ зірки)" : "Ви отримуєте (₴ гривні)";
+
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
@@ -114,6 +117,7 @@ export default function Swap({ user }) {
           onChange={handleFromChange}
           onSelectToken={setFromToken}
           direction="from"
+          label={fromLabel}
         />
 
         {/* SWAP */}
@@ -128,6 +132,7 @@ export default function Swap({ user }) {
           onChange={handleToChange}
           onSelectToken={setToToken}
           direction="to"
+          label={toLabel}
         />
 
         {/* Динамічна кнопка */}
@@ -159,4 +164,3 @@ export default function Swap({ user }) {
     </div>
   );
 }
-
