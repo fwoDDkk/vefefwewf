@@ -152,6 +152,7 @@ import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
 const API_BASE = "https://oneback-d62p.onrender.com";
 
 export default function Swap({ user }) {
+  console.log(user)
   const [fromToken, setFromToken] = useState("UAH");
   const [toToken, setToToken] = useState("STAR");
   const [fromAmount, setFromAmount] = useState("");
