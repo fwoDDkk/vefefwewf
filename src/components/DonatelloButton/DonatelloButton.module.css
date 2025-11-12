@@ -266,7 +266,7 @@
 /* === Покращення кнопки Donatello для кращого вирівнювання === */
 .donatelloBtn {
   display: inline-block;
-  width: 100%;
+  width: 125%;
   max-width: 280px;
   text-align: center;
 }
