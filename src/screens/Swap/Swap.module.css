@@ -1,18 +1,31 @@
 .container {
+  width: 100%;
   background: #121212;
   min-height: 100vh;
   padding: 20px 16px 100px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .inner {
   width: 100%;
-  max-width: 420px;
+  max-width: 100%; /* ✅ більше ніякого 420px */
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.tokenInput,
+.compactSection,
+.submitBtn {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .swapBtn {
@@ -31,48 +44,55 @@
   box-shadow: 0 0 8px #2a2a3a;
   transition: transform 0.2s ease;
 }
-
 .swapBtn:hover {
   transform: rotate(180deg);
 }
 
-.rate {
-  font-size: 14px;
-  color: #ccc;
+.rateInfo {
+  margin-top: 8px;
+  font-size: 0.9rem;
   text-align: center;
+  color: #ffc94a;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}
+
+.compactSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: -4px;
+  width: 100%;
 }
 
 .submitBtn {
-  background: #ffb400;
-  color: black;
-  font-weight: bold;
+  display: block;
+  width: 100%;
+  background: #ffc94a;
+  color: #111;
   border: none;
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.3);
+  margin: 4px auto;
 }
-
 .submitBtn:hover {
-  background: #ffc933;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 217, 102, 0.6);
 }
 
-@media (max-width: 430px) {
-  .submitBtn {
-    font-size: 15px;
-    padding: 14px;
-  }
-
-  .rate {
-    font-size: 13px;
-  }
-
-  .swapBtn {
-    width: 42px;
-    height: 42px;
-  }
+.warnText {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #ff5050;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
 }
+
 .managerBtn {
   margin-top: 12px;
   width: 100%;
@@ -87,141 +107,21 @@
   transition: all 0.2s ease;
   cursor: pointer;
 }
-
 .managerBtn:hover {
   transform: scale(1.03);
   box-shadow: 0 0 18px rgba(255, 220, 0, 0.9);
 }
-.rateText {
-  margin-top: 10px;
-  text-align: center;
-  color: #00fff2;
-  font-size: 0.9rem;
-  font-family: "Orbitron", sans-serif;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
-}
-.rateInfo {
-  margin-top: 10px;
-  margin-bottom: 6px;
-  font-size: 0.88rem;
-  text-align: center;
-  color: #ffc94a;
-  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
-}
-/* === Курс під інпутами === */
-.rateInfo {
-  margin-top: 8px;         /* ближче до поля */
-  margin-bottom: 6px;      /* менше повітря до кнопки */
-  font-size: 0.9rem;
-  text-align: center;
-  color: #ffc94a;
-  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
-}
 
-/* === Кнопка оплати === */
-.submitBtn {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  margin: 4px auto;          /* менший відступ зверху і знизу */
-  background: #ffc94a;
-  color: #111;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s ease;
-  box-shadow: 0 0 10px rgba(255, 217, 102, 0.3);
-}
-
-.submitBtn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px rgba(255, 217, 102, 0.6);
-}
-
-/* === Попередження про мінімальну покупку === */
-.warnText {
-  margin-top: 4px;          /* зменшуємо відстань */
-  font-size: 0.85rem;
-  color: #ff5050;
-  text-align: center;
-  text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
-}
-/* 🔹 Секція з курсом і кнопкою (щільна, без gap) */
-.compactSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px; /* або 0 якщо хочеш зовсім без відступу */
-  margin-top: -6px; /* трохи підтягує курс ближче до поля */
-}
-.rateInfo {
-  font-size: 0.9rem;
-  text-align: center;
-  color: #ffc94a;
-  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
-}
-/* ------------ */
-.inner {
-  width: 100%;
-  max-width: 420px; /* інпути завжди всередині */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-.compactSection {
-  width: 100%;
-  max-width: 100%; /* ніколи не виходить за межі інпутів */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin-top: -4px;
-}
-
-.rateInfo {
-  width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #ffc94a;
-  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
-}
-
-.submitBtn {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-.tokenInput {
-  width: 100%;
-  max-width: 100%;
-}
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.inner {
-  width: 100%;
-  max-width: 100%;          /* ✅ не обмежуємо фіксовано */
-  padding: 0 12px;          /* невеликий внутрішній відступ */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
-}
-
-.tokenInput,
-.compactSection,
-.submitBtn {
-  width: 100%;              /* ✅ тепер усе масштабується */
-  max-width: 100%;
-  box-sizing: border-box;
+@media (max-width: 430px) {
+  .submitBtn {
+    font-size: 15px;
+    padding: 14px;
+  }
+  .rateInfo {
+    font-size: 13px;
+  }
+  .swapBtn {
+    width: 42px;
+    height: 42px;
+  }
 }
