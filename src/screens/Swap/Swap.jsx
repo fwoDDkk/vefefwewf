@@ -195,7 +195,7 @@ export default function Swap({ user }) {
       if (!stars || stars <= 0) return alert("Вкажіть кількість зірок");
 
       await axios.post(`${API_BASE}/api/pay/sell`, {
-        telegramId: user.telegram_id,
+        telegramId: user.telegramId,
         username: user.username,
         stars,
       });
