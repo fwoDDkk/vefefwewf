@@ -142,7 +142,7 @@
 //     </div>
 //   );
 // }
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Swap.module.css";
 import TokenInput from "../../components/TokenInput/TokenInput";
