@@ -36,7 +36,7 @@ export default function App() {
       }
 
       try {
-        const res = await axios.post(`${API_BASE}/api/auth/telegram`, {
+        const res = await axios.post(`${API_BASE}/api/auth`, {
           initData: tg.initData,
         });
 
