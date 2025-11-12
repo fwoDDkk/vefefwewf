@@ -109,3 +109,44 @@
   color: #ffc94a;
   text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
 }
+/* === Курс під інпутами === */
+.rateInfo {
+  margin-top: 8px;         /* ближче до поля */
+  margin-bottom: 6px;      /* менше повітря до кнопки */
+  font-size: 0.9rem;
+  text-align: center;
+  color: #ffc94a;
+  text-shadow: 0 0 8px rgba(255, 217, 102, 0.3);
+}
+
+/* === Кнопка оплати === */
+.submitBtn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 4px auto;          /* менший відступ зверху і знизу */
+  background: #ffc94a;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.3);
+}
+
+.submitBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 217, 102, 0.6);
+}
+
+/* === Попередження про мінімальну покупку === */
+.warnText {
+  margin-top: 4px;          /* зменшуємо відстань */
+  font-size: 0.85rem;
+  color: #ff5050;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 80, 80, 0.4);
+}
