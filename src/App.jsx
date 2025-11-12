@@ -10,45 +10,54 @@ export default function App() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+    // === 1️⃣ Логування для перевірки, чи Telegram WebApp взагалі є ===
+    console.log("window.Telegram:", window.Telegram);
+    console.log("WebApp:", window.Telegram?.WebApp);
+    console.log("initData:", window.Telegram?.WebApp?.initData);
+  
     const tg = window.Telegram?.WebApp;
     if (!tg) {
       console.error("❌ Telegram WebApp not found");
       setUserData({ error: true });
       return;
     }
-
+  
     tg.ready();
-
+  
+    // === 2️⃣ Очікування появи initData (іноді Telegram підтягує його з затримкою) ===
     const waitForInitData = async () => {
       let tries = 0;
       while (!tg.initData && tries < 10) {
-        await new Promise((r) => setTimeout(r, 300));
+        console.log(`⏳ Очікуємо initData... (${tries + 1}/10)`);
+        await new Promise((res) => setTimeout(res, 300));
         tries++;
       }
-
+  
       if (!tg.initData) {
-        console.error("❌ initData not found");
+        console.error("❌ initData не знайдено навіть після очікування");
         setUserData({ error: true });
         return;
       }
-
+  
+      console.log("✅ Отримано initData:", tg.initData);
+  
       try {
-        // 🔹 Надсилаємо initData на бекенд для перевірки
         const res = await axios.post(`${API_BASE}/api/auth/telegram`, {
           initData: tg.initData,
         });
-
-        // 🔹 Зберігаємо токен для наступних запитів
+  
         localStorage.setItem("authToken", res.data.token);
+        console.log("✅ Успішна авторизація:", res.data.user);
         setUserData(res.data.user);
       } catch (err) {
         console.error("❌ Auth error:", err.response?.data || err.message);
         setUserData({ error: true });
       }
     };
-
+  
     waitForInitData();
   }, []);
+  
 
   if (userData === null) return <div>🔄 Завантаження...</div>;
   if (userData?.error)
