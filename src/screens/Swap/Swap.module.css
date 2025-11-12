@@ -92,3 +92,12 @@
   transform: scale(1.03);
   box-shadow: 0 0 18px rgba(255, 220, 0, 0.9);
 }
+.rateText {
+  margin-top: 10px;
+  text-align: center;
+  color: #00fff2;
+  font-size: 0.9rem;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
+}

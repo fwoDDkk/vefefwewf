@@ -18,7 +18,6 @@ export default function Swap({ user }) {
 
   const RATES = { BUY: 149.99 / 200, SELL: 80 / 200 };
 
-  // === 🔄 Автоматична зміна режиму ===
   useEffect(() => {
     if (toToken === "STAR") setMode("buy");
     else if (fromToken === "STAR") setMode("sell");
@@ -40,7 +39,6 @@ export default function Swap({ user }) {
     setFromAmount(toToken === "UAH" ? (v / r).toFixed(2) : (v * r).toFixed(2));
   };
 
-  // === 🔁 Обмін валют ===
   const handleSwap = () => {
     const newFrom = toToken;
     const newTo = fromToken;
@@ -97,15 +95,26 @@ export default function Swap({ user }) {
     }
   };
 
-  // === 💬 Кнопка менеджера ===
   const handleContactManager = () => {
     const link = `https://t.me/${MANAGER_USERNAME}`;
     window.open(link, "_blank");
   };
 
-  // === 🪄 Тексти для "Ви віддаєте / отримуєте" ===
-  const fromLabel = mode === "buy" ? "Ви віддаєте (₴ гривні)" : "Ви віддаєте (⭐ зірки)";
-  const toLabel = mode === "buy" ? "Ви отримуєте (⭐ зірки)" : "Ви отримуєте (₴ гривні)";
+  // === 🪄 Тексти для полів ===
+  const fromLabel =
+    mode === "buy"
+      ? "Ви віддаєте (₴ гривні)"
+      : "Ви віддаєте (⭐ зірки)";
+  const toLabel =
+    mode === "buy"
+      ? "Ви отримуєте (⭐ зірки)"
+      : "Ви отримуєте (₴ гривні)";
+
+  // === 💱 Текст курсу ===
+  const rateText =
+    mode === "buy"
+      ? "💱 Курс: 149.99 грн за 200 ⭐"
+      : "💱 Курс: 80 грн за 200 ⭐";
 
   return (
     <div className={styles.container}>
@@ -135,7 +144,10 @@ export default function Swap({ user }) {
           label={toLabel}
         />
 
-        {/* Динамічна кнопка */}
+        {/* 💱 Курс */}
+        <p className={styles.rateText}>{rateText}</p>
+
+        {/* Кнопки */}
         {mode === "buy" ? (
           <DonatelloButton
             amount={fromAmount}
@@ -148,7 +160,6 @@ export default function Swap({ user }) {
             <button onClick={handleSell} className={styles.submitBtn}>
               Продати зірки
             </button>
-
             {paymentSuccess && (
               <button
                 onClick={handleContactManager}
