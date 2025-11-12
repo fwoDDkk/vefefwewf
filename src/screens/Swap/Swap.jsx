@@ -63,25 +63,39 @@ export default function Swap() {
   const handleSell = async () => {
     try {
       const tg = window.Telegram?.WebApp;
-      console.log(tg.initData)
-      const userId = tg?.initData?.user?.id;
+      tg?.ready(); // ✅ ініціалізація Telegram API
+  
+      const userId = tg?.initDataUnsafe?.user?.id;       // ✅ правильний шлях
       const username = tg?.initDataUnsafe?.user?.username;
       const stars = Number(fromAmount);
-
-      if (!stars || stars <= 0) return alert("Вкажіть суму продажу");
-
-      await fetch("https://oneback-d62p.onrender.com/api/pay/sell", {
+  
+      if (!userId) {
+        alert("❌ Не вдалося отримати Telegram ID користувача");
+        return;
+      }
+      if (!stars || stars <= 0) {
+        alert("Вкажіть кількість зірок для продажу");
+        return;
+      }
+  
+      const res = await fetch("https://oneback-d62p.onrender.com/api/pay/sell", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ telegramId: userId, username, stars }),
       });
-
-      alert("✅ Запит на продаж відправлено менеджеру!");
+  
+      const data = await res.json();
+      if (res.ok) {
+        alert("✅ Запит на продаж відправлено менеджеру!");
+      } else {
+        alert(`⚠️ Помилка: ${data.message || "Unauthorized"}`);
+      }
     } catch (err) {
       console.error("Sell error:", err);
       alert("❌ Помилка при надсиланні запиту");
     }
   };
+  
 
   return (
     <div className={styles.container}>
