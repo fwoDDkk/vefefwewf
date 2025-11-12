@@ -38,22 +38,22 @@
     border-radius: 12px;
     padding: 10px 12px;
     position: relative;
-
-    width: 100%;           /* ✅ обов’язково, щоб розтягувався */
-  box-sizing: border-box;
-  overflow: hidden; /* ✅ не дає дочірнім елементам вилітати */
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible; /* ❗ dropdown не буде різатися */
   }
   
   .inputWrapper input {
+    flex: 1;                     /* ✅ автоматично займає всю доступну ширину */
+    min-width: 0;                /* ❗ обов’язково, щоб не ламався флекс */
     background: transparent;
     border: none;
     outline: none;
     font-size: 20px;
     color: white;
-    flex: 1;
   }
-  
   .token {
+    flex-shrink: 0; /* ✅ щоб не стискався при малій ширині */
     display: flex;
     align-items: center;
     gap: 8px;
