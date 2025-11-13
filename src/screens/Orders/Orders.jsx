@@ -18,6 +18,7 @@ export default function Orders({ user }) {
           headers: {
             Authorization: `Bearer ${user.token}`, // якщо ти юзаєш токен авторизації
           },
+          telegramId: user.telegramId
         });
 
         if (res.data.success) {
