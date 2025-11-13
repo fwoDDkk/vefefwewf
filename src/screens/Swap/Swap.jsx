@@ -56,38 +56,54 @@ export default function Swap({ user }) {
     try {
       const tg = window.Telegram?.WebApp;
       tg?.ready();
-
+  
       const stars = Number(fromAmount);
       if (!stars || stars <= 0) return alert("⚠️ Вкажіть кількість зірок");
-
+  
+      // 1️⃣ створюємо інвойс
       const res = await axios.post(`${API_BASE}/api/pay/sell`, {
         telegramId: user.telegramId,
         username: user.username,
         stars,
       });
-
+  
       if (!res.data.success) {
         alert(`❌ Помилка: ${res.data.message}`);
         return;
       }
-
+  
       const link = res.data.invoice_link;
       if (!link) {
         alert("⚠️ Інвойс не отримано від сервера");
         return;
       }
-
+  
+      // 2️⃣ відкриваємо оплату Telegram Stars
       if (window.Telegram?.WebApp?.openInvoice) {
-        window.Telegram.WebApp.openInvoice(link, (status) => {
+        window.Telegram.WebApp.openInvoice(link, async (status) => {
           console.log("Invoice status:", status);
+  
+          // 3️⃣ якщо успішна оплата
           if (status === "paid") {
             alert(`✅ Оплата успішна! Продано ${stars}⭐`);
             setPaymentSuccess(true);
-          } else if (status === "cancelled") {
+  
+            // 4️⃣ додаємо транзакцію в історію
+            await axios.post(`${API_BASE}/api/pay/add-transaction`, {
+              telegramId: user.telegramId,
+              username: user.username,
+              stars,
+              status: "paid",
+            });
+          }
+  
+          // 5️⃣ якщо користувач скасував оплату
+          else if (status === "cancelled") {
             alert("❌ Оплата скасована");
           }
         });
       } else {
+        // fallback на відкриття у новій вкладці
         window.open(link, "_blank");
       }
     } catch (err) {
@@ -95,6 +111,7 @@ export default function Swap({ user }) {
       alert("❌ Помилка при створенні інвойсу");
     }
   };
+  
 
   const handleContactManager = () => {
     const link = `https://t.me/${MANAGER_USERNAME}`;
