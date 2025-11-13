@@ -110,21 +110,6 @@ export default function Swap({ user }) {
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
-        {/* FROM */}
-        <TokenInput
-          token={fromToken}
-          amount={fromAmount}
-          onChange={handleFromChange}
-          onSelectToken={setFromToken}
-          direction="from"
-          label={fromLabel}
-        />
-
-        {/* SWAP */}
-        <button className={styles.swapBtn} onClick={handleSwap}>
-          ⇅
-        </button>
-
         {/* TO */}
         <TokenInput
   token={toToken}
@@ -134,6 +119,22 @@ export default function Swap({ user }) {
   direction="to"
   label={toLabel}
 />
+       
+
+        {/* SWAP */}
+        <button className={styles.swapBtn} onClick={handleSwap}>
+          ⇅
+        </button>
+
+        {/* FROM */}
+        <TokenInput
+          token={fromToken}
+          amount={fromAmount}
+          onChange={handleFromChange}
+          onSelectToken={setFromToken}
+          direction="from"
+          label={fromLabel}
+        />
 
 {/* === Блок курсу + кнопки (без gap) === */}
 <div className={styles.compactSection}>
