@@ -10,7 +10,7 @@ export default function Orders({ user }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.token) return;
+    if (!user?.telegramId) return;
   
     const fetchHistory = async () => {
       try {
