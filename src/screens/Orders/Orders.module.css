@@ -1,4 +1,4 @@
-.container {
+/* .container {
     padding: 16px;
     padding-bottom: 80px;
     background: #121212;
@@ -57,5 +57,98 @@
   
   .pending {
     color: #ffeb3b;
-  }
-  
+  } */
+  .container {
+  min-height: 100vh;
+  background: #0b0c1f;
+  padding: 20px 16px 100px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: "Orbitron", sans-serif;
+  color: #00fff2;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.loading,
+.empty {
+  color: #888;
+  font-size: 1rem;
+  margin-top: 40px;
+}
+
+.list {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: linear-gradient(145deg, #12142c, #0c0e1f);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.type {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+}
+
+.buy {
+  color: #00ff99;
+}
+
+.sell {
+  color: #ffcc00;
+}
+
+.status {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.done {
+  color: #00ff99;
+}
+
+.pending {
+  color: #ffaa33;
+}
+
+.details {
+  font-size: 0.85rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.date {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #999;
+  text-align: right;
+  font-family: monospace;
+}
