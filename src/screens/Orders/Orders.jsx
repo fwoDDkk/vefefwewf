@@ -15,10 +15,7 @@ export default function Orders({ user }) {
     const fetchHistory = async () => {
       try {
         const res = await axios.get(`${API_BASE}/api/pay/history`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`, // якщо ти юзаєш токен авторизації
-          },
-          telegramId: user.telegramId
+          params: { telegramId: user.telegramId },
         });
 
         if (res.data.success) {
