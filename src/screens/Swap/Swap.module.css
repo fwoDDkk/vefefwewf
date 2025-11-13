@@ -125,3 +125,11 @@
     height: 42px;
   }
 }
+.container {
+  min-height: 100vh;
+  background-image: url("../../assets/bg.jpg");
+  background-size: cover;       /* або contain — якщо треба вписати */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* щоб фон не рухався при скролі */
+}
