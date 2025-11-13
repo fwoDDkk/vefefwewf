@@ -133,3 +133,22 @@
   background-repeat: no-repeat;
   background-attachment: fixed; /* щоб фон не рухався при скролі */
 }
+.container {
+  position: relative;
+  background: url("../../assets/bg1.jpg") center/cover no-repeat;
+  min-height: 100vh;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* прозорий чорний шар */
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
