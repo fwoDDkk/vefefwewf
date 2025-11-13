@@ -9,11 +9,12 @@ const API_BASE = "https://oneback-d62p.onrender.com";
 const MANAGER_USERNAME = "StarcManager"; // ⚠️ без @
 
 export default function Swap({ user }) {
-  const [fromToken, setFromToken] = useState("UAH");
-  const [toToken, setToToken] = useState("STAR");
+  // ✅ стартуємо з режиму ПРОДАЖУ
+  const [fromToken, setFromToken] = useState("STAR");
+  const [toToken, setToToken] = useState("UAH");
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState("");
-  const [mode, setMode] = useState("buy");
+  const [mode, setMode] = useState("sell");
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const RATES = { BUY: 149.99 / 200, SELL: 80 / 200 };
@@ -40,7 +41,6 @@ export default function Swap({ user }) {
     setFromAmount(toToken === "UAH" ? (v / r).toFixed(2) : (v * r).toFixed(2));
   };
 
-  // === 🔁 Обмін валют ===
   const handleSwap = () => {
     const newFrom = toToken;
     const newTo = fromToken;
@@ -52,7 +52,6 @@ export default function Swap({ user }) {
     else if (newFrom === "STAR") setMode("sell");
   };
 
-  // === 💫 Продаж зірок ===
   const handleSell = async () => {
     try {
       const tg = window.Telegram?.WebApp;
@@ -97,36 +96,17 @@ export default function Swap({ user }) {
     }
   };
 
-  // === 💬 Кнопка менеджера ===
   const handleContactManager = () => {
     const link = `https://t.me/${MANAGER_USERNAME}`;
     window.open(link, "_blank");
   };
 
-  // === 🪄 Тексти для "Ви віддаєте / отримуєте" ===
   const fromLabel = mode === "buy" ? "Ви віддаєте (₴ гривні)" : "Ви віддаєте (⭐ зірки)";
   const toLabel = mode === "buy" ? "Ви отримуєте (⭐ зірки)" : "Ви отримуєте (₴ гривні)";
 
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
-        {/* TO */}
-        <TokenInput
-  token={toToken}
-  amount={toAmount}
-  onChange={handleToChange}
-  onSelectToken={setToToken}
-  direction="to"
-  label={toLabel}
-/>
-       
-
-        {/* SWAP */}
-        <button className={styles.swapBtn} onClick={handleSwap}>
-          ⇅
-        </button>
-
-        {/* FROM */}
         <TokenInput
           token={fromToken}
           amount={fromAmount}
@@ -136,38 +116,50 @@ export default function Swap({ user }) {
           label={fromLabel}
         />
 
-{/* === Блок курсу + кнопки (без gap) === */}
-<div className={styles.compactSection}>
-  <p className={styles.rateInfo}>
-    {mode === "buy"
-      ? "💰 Курс: 200 ⭐ = 149.99 грн"
-      : "💰 Курс: 200 ⭐ = 80 грн"}
-  </p>
-
-  {mode === "buy" ? (
-    <DonatelloButton
-      amount={fromAmount}
-      token={fromToken}
-      mode={mode}
-      className={styles.submitBtn}
-    />
-  ) : (
-    <>
-      <button onClick={handleSell} className={styles.submitBtn}>
-        Продати зірки
-      </button>
-
-      {paymentSuccess && (
-        <button
-          onClick={handleContactManager}
-          className={styles.managerBtn}
-        >
-          💬 Написати менеджеру
+        <button className={styles.swapBtn} onClick={handleSwap}>
+          ⇅
         </button>
-      )}
-    </>
-  )}
-</div>
+
+        <TokenInput
+          token={toToken}
+          amount={toAmount}
+          onChange={handleToChange}
+          onSelectToken={setToToken}
+          direction="to"
+          label={toLabel}
+        />
+
+        <div className={styles.compactSection}>
+          <p className={styles.rateInfo}>
+            {mode === "buy"
+              ? "💰 Курс: 200 ⭐ = 149.99 грн"
+              : "💰 Курс: 200 ⭐ = 80 грн"}
+          </p>
+
+          {mode === "buy" ? (
+            <DonatelloButton
+              amount={fromAmount}
+              token={fromToken}
+              mode={mode}
+              className={styles.submitBtn}
+            />
+          ) : (
+            <>
+              <button onClick={handleSell} className={styles.submitBtn}>
+                Продати зірки
+              </button>
+
+              {paymentSuccess && (
+                <button
+                  onClick={handleContactManager}
+                  className={styles.managerBtn}
+                >
+                  💬 Написати менеджеру
+                </button>
+              )}
+            </>
+          )}
+        </div>
       </div>
       <BottomNav />
     </div>
