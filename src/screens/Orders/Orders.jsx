@@ -10,14 +10,16 @@ export default function Orders({ user }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.telegramId) return;
-
+    if (!user?.token) return;
+  
     const fetchHistory = async () => {
       try {
         const res = await axios.get(`${API_BASE}/api/pay/history`, {
-          params: { telegramId: user.telegramId },
+          headers: {
+            Authorization: `Bearer ${user.token}`, // 🔑 токен Telegram WebApp
+          },
         });
-
+  
         if (res.data.success) {
           setOrders(res.data.history);
         } else {
@@ -29,9 +31,10 @@ export default function Orders({ user }) {
         setLoading(false);
       }
     };
-
+  
     fetchHistory();
   }, [user]);
+  
 
   return (
     <div className={styles.container}>
