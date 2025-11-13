@@ -1,36 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import styles from './Orders.module.css'
-import BottomNav from '../../components/BottomNav/BottomNav'
+import React, { useEffect, useState } from "react";
+import styles from "./Orders.module.css";
+import BottomNav from "../../components/BottomNav/BottomNav";
+import axios from "axios";
 
-export default function Orders() {
-  const [orders, setOrders] = useState([])
+const API_BASE = "https://oneback-d62p.onrender.com";
+
+export default function Orders({ user }) {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('orders') || '[]')
-    setOrders(saved)
-  }, [])
+    if (!user?.telegramId) return;
+
+    const fetchHistory = async () => {
+      try {
+        const res = await axios.get(`${API_BASE}/api/pay/history`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`, // якщо ти юзаєш токен авторизації
+          },
+        });
+
+        if (res.data.success) {
+          setOrders(res.data.history);
+        } else {
+          console.warn("History load failed:", res.data.message);
+        }
+      } catch (err) {
+        console.error("History fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, [user]);
 
   return (
     <div className={styles.container}>
-      <h2>Історія ордерів</h2>
+      <h2 className={styles.title}>📜 Історія транзакцій</h2>
 
-      {orders.length === 0 ? (
-        <p className={styles.empty}>Поки що ордерів немає</p>
+      {loading ? (
+        <p className={styles.loading}>Завантаження...</p>
+      ) : orders.length === 0 ? (
+        <p className={styles.empty}>Поки що транзакцій немає</p>
       ) : (
         <div className={styles.list}>
-          {orders.map((order, index) => (
-            <div key={index} className={styles.order}>
-              <div className={styles.top}>
-                <strong>{order.type === 'swap' ? 'Обмін' : order.type}</strong>
-                <span className={order.status === 'done' ? styles.done : styles.pending}>
-                  {order.status === 'done' ? '🟢 Виконано' : '🟡 Очікує'}
+          {orders.map((order, i) => (
+            <div key={i} className={styles.card}>
+              <div className={styles.topRow}>
+                <span
+                  className={`${styles.type} ${
+                    order.type === "sell" ? styles.sell : styles.buy
+                  }`}
+                >
+                  {order.type === "sell" ? "Продаж зірок" : "Покупка"}
+                </span>
+
+                <span
+                  className={`${styles.status} ${
+                    order.status === "paid" ? styles.done : styles.pending
+                  }`}
+                >
+                  {order.status === "paid" ? "✅ Оплачено" : "⏳ Очікує"}
                 </span>
               </div>
+
               <div className={styles.details}>
-                <span>{order.amount} {order.token}</span>
-                <span>{order.result} {order.resultToken}</span>
+                <p>
+                  <strong>⭐ Кількість:</strong> {order.amount}
+                </p>
+                <p>
+                  <strong>🆔 Номер замовлення:</strong> {order.order_id}
+                </p>
               </div>
-              <div className={styles.date}>{order.date}</div>
+
+              <div className={styles.date}>
+                {new Date(order.created_at).toLocaleString("uk-UA")}
+              </div>
             </div>
           ))}
         </div>
@@ -38,5 +84,5 @@ export default function Orders() {
 
       <BottomNav />
     </div>
-  )
+  );
 }
