@@ -63,7 +63,7 @@ export default function Orders({ user }) {
                     order.status === "paid" ? styles.done : styles.pending
                   }`}
                 >
-                  {order.status === "paid" ? "✅ Оплачено" : "⏳ Очікує"}
+                  {/* {order.status === "paid" ? "✅ Оплачено" : "⏳ Очікує"} */}
                 </span>
               </div>
 
