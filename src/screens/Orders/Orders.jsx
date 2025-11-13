@@ -16,9 +16,10 @@ export default function Orders({ user }) {
       try {
         const res = await axios.get(`${API_BASE}/api/pay/history`, {
           headers: {
-            Authorization: `Bearer ${user.token}`, // 🔑 токен Telegram WebApp
+            telegramid: user.telegramId, // 👈 назва в нижньому регістрі — звично для HTTP
           },
         });
+        
   
         if (res.data.success) {
           setOrders(res.data.history);
