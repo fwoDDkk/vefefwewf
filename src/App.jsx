@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Swap from "./screens/Swap/Swap";
 import Orders from "./screens/Orders/Orders";
+import Gifts from "./pages/Nft/Nft";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
 
@@ -60,6 +61,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Swap user={userData} />} />
         <Route path="/orders" element={<Orders user={userData} />} />
+        <Route path="/gifts" element={<Gifts />} />
       </Routes>
     </BrowserRouter>
   );
