@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Nft.module.css';
+import BottomNav from '../../components/BottomNav/BottomNav';
 
 const GIFTS_DATA = [
   { id: 1, name: "Льодяник", emoji: "🍭", priceUah: 120, priceTon: 0.8 },
@@ -51,6 +52,7 @@ export default function Gifts()  {
           </div>
         ))}
       </div>
+      <BottomNav />
     </div>
   );
 };
