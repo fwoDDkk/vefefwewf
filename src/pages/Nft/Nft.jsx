@@ -3,10 +3,11 @@ import styles from './Nft.module.css';
 import BottomNav from '../../components/BottomNav/BottomNav';
 
 const GIFTS_DATA = [
-    { id: 1, name: "Lollipop", image: "/cigar.png", priceTon: 0.8, priceUah: 180 },
-    { id: 2, name: "Rose", image: "/snoopDog.png", priceTon: 2.5, priceUah: 540 },
-    { id: 3, name: "Diamond", image: "/Sakura Flower.png", priceTon: 15, priceUah: 3200 },
-  { id: 4, name: "Ракета", image: "🚀", priceUah: 1800, priceTon: 12.4 },
+    { id: 1, name: "Snoop Cigar", image: "/cigar.png", priceTon: 9.2, priceUah: 800 },
+    { id: 2, name: "Snoop Dog", image: "/snoopDog.png", priceTon: 4.22, priceUah: 400 },
+    { id: 3, name: "Sakura Flower", image: "/Sakura Flower.png", priceTon: 7.47, priceUah: 650 },
+  { id: 4, name: "Stellar Rocket", image: "/Stellar Rocket", priceUah: 355, priceTon: 3.66 },
+  { id: 4, name: "Input Key", image: "/input Key.png", priceUah: 383, priceTon: 4.15 },
 ];
 
 export default function Gifts()  {
