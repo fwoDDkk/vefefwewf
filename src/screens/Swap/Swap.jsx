@@ -179,7 +179,7 @@ export default function Swap({ user }) {
           )}
         </div>
       </div>
-      {mode === 'buy' ? <BtnSellGift /> : <></>}
+      {mode === 'sell' ? <BtnSellGift /> : <></>}
       <BottomNav />
     </div>
   );
