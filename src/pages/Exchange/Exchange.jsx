@@ -85,14 +85,7 @@ export default function Exchange() {
       </div>
 
       <button className={styles.exchangeBtn}>Обміняти</button>
-    <div className={styles.wrapper}>
-         <button 
-           className={`${styles.sellButton} ${isBouncing ? styles.bounce : ''}`}
-           onClick={handleSellClick}
-         >
-           Продати NFT подарунок за грн/ton
-         </button>
-       </div>
+      <h1>hhhhhhhhhhhhhhhhhhh</h1>
       <BottomNav />
     </div>
   )
