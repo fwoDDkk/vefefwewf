@@ -4,6 +4,7 @@ import styles from "./Swap.module.css";
 import TokenInput from "../../components/TokenInput/TokenInput";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
+import BtnSellGift from "../../components/BtnSellGift/BtnSellGift";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
 const MANAGER_USERNAME = "StarcManager"; // ⚠️ без @
@@ -178,6 +179,7 @@ export default function Swap({ user }) {
           )}
         </div>
       </div>
+      {mode === 'buy' ? <BtnSellGift /> : <></>}
       <BottomNav />
     </div>
   );

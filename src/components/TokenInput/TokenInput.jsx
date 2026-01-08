@@ -23,7 +23,7 @@ const TokenInput = ({
           {label
             ? label
             : direction === "from"
-            ? "Ви віддаєте1111"
+            ? "Ви віддаєте"
             : "Ви отримуєте"}
         </span>
       </div>
