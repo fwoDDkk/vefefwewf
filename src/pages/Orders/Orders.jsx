@@ -22,9 +22,6 @@ export default function Orders() {
           <OrderItem key={i} order={order} />
         ))
       )}
-      <div style={{ width: '100%', minHeight: '100px' }}>
-  <BtnSellGift />
-</div>
       <BottomNav />
     </div>
   )

@@ -85,7 +85,7 @@ export default function Exchange() {
       </div>
 
       <button className={styles.exchangeBtn}>Обміняти</button>
-      <h1>hhhhhhhhhhhhhhhhhhh</h1>
+      {mode === 'buy' ? <BtnSellGift /> : <></>}
       <BottomNav />
     </div>
   )
