@@ -53,7 +53,7 @@ export default function App() {
     waitForInitData();
   }, []);
 
-  if (userData === null) return <div>🔄 Завантаження...</div>;
+  if (userData === null) return <div> Завантаження...</div>;
   if (userData?.error) return <div>Запустіть застосунок через Telegram</div>;
 
   return (
