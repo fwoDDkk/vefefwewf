@@ -3,7 +3,7 @@ import styles from './Nft.module.css';
 import BottomNav from '../../components/BottomNav/BottomNav';
 
 const GIFTS_DATA = [
-    { id: 1, name: "Lollipop", image: "/cigar", priceTon: 0.8, priceUah: 180 },
+    { id: 1, name: "Lollipop", image: "/cigar.png", priceTon: 0.8, priceUah: 180 },
     { id: 2, name: "Rose", image: "https://cache.fragment.com/obj/gift/rose-1.png", priceTon: 2.5, priceUah: 540 },
     { id: 3, name: "Diamond", image: "https://cache.fragment.com/obj/gift/diamond-1.png", priceTon: 15, priceUah: 3200 },
   { id: 4, name: "Ракета", image: "🚀", priceUah: 1800, priceTon: 12.4 },
