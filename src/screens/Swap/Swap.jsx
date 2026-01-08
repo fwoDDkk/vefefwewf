@@ -7,7 +7,7 @@ import DonatelloButton from "../../components/DonatelloButton/DonatelloButton";
 import BtnSellGift from "../../components/BtnSellGift/BtnSellGift";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
-const MANAGER_USERNAME = "StarcManager"; // ⚠️ без @
+const MANAGER_USERNAME = "StarcSupport"; // ⚠️ без @
 
 export default function Swap({ user }) {
   // ✅ стартуємо з режиму ПРОДАЖУ

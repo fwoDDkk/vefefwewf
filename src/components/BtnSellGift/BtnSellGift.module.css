@@ -2,38 +2,52 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-  position: relative; /* Додано для стабільності z-index */
-  z-index: 99;        /* Піднімаємо вище за основний контент */
-  margin-top: 10px;   /* Додаємо відступ зверху */
-  margin-bottom: 80px; /* Великий відступ знизу, щоб BottomNav не перекривав */
+  padding: 10px 16px;
+  position: relative;
+  z-index: 50;
+  margin-top: auto; /* Виштовхує кнопку вниз, якщо в колонці */
+  margin-bottom: 90px; /* Місце для BottomNav */
 }
 
 .sellButton {
-  display: block;      /* Гарантуємо, що це блочний елемент */
-  background: linear-gradient(135deg, #f3ba2f 0%, #ffcc4d 100%);
-  color: #000 !important; /* Форсуємо колір тексту */
-  border: none;
-  border-radius: 14px;
-  padding: 16px 24px;
-  font-weight: 800;
-  font-size: 14px;
+  /* Напівпрозорий темний фон з легким золотистим відтінком */
+  background: rgba(243, 186, 47, 0.15);
+  backdrop-filter: blur(8px); /* Розмиття фону за кнопкою */
+  
+  /* Золотиста рамка */
+  border: 1px solid rgba(243, 186, 47, 0.3);
+  border-radius: 12px;
+  
+  /* Текст напівпрозорий білий або золотистий */
+  color: rgba(255, 255, 255, 0.8);
+  
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 13px;
   width: 100%;
-  max-width: 400px;
+  max-width: 340px;
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(243, 186, 47, 0.4);
-  pointer-events: auto; /* Щоб кнопка реагувала на кліки */
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
+/* Коли кнопка підстрибує, вона стає яскравішою */
 .bounce {
-  animation: jump 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+  animation: jump 0.8s ease;
+  background: rgba(243, 186, 47, 0.4);
+  color: #fff;
+  border-color: rgba(243, 186, 47, 0.8);
+  box-shadow: 0 0 15px rgba(243, 186, 47, 0.2);
 }
 
 @keyframes jump {
   0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-12px); }
-  50% { transform: translateY(0); }
-  70% { transform: translateY(-6px); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.sellButton:active {
+  transform: scale(0.98);
+  background: rgba(243, 186, 47, 0.6);
 }
