@@ -4,13 +4,16 @@
   justify-content: center;
   padding: 16px;
   box-sizing: border-box;
-  z-index: 10; /* Щоб кнопка була поверх фону */
-  margin-bottom: 20px; /* Відступ від нижньої панелі */
+  position: relative; /* Додано для стабільності z-index */
+  z-index: 99;        /* Піднімаємо вище за основний контент */
+  margin-top: 10px;   /* Додаємо відступ зверху */
+  margin-bottom: 80px; /* Великий відступ знизу, щоб BottomNav не перекривав */
 }
 
 .sellButton {
+  display: block;      /* Гарантуємо, що це блочний елемент */
   background: linear-gradient(135deg, #f3ba2f 0%, #ffcc4d 100%);
-  color: #000;
+  color: #000 !important; /* Форсуємо колір тексту */
   border: none;
   border-radius: 14px;
   padding: 16px 24px;
@@ -20,13 +23,10 @@
   max-width: 400px;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 20px rgba(243, 186, 47, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  outline: none;
+  box-shadow: 0 4px 20px rgba(243, 186, 47, 0.4);
+  pointer-events: auto; /* Щоб кнопка реагувала на кліки */
 }
 
-/* Анімація підстрибування */
 .bounce {
   animation: jump 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
 }
@@ -36,9 +36,4 @@
   30% { transform: translateY(-12px); }
   50% { transform: translateY(0); }
   70% { transform: translateY(-6px); }
-}
-
-.sellButton:active {
-  transform: scale(0.97);
-  box-shadow: 0 2px 10px rgba(243, 186, 47, 0.2);
 }
