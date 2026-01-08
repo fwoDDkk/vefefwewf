@@ -1,12 +1,22 @@
 .container {
-    padding: 16px;
-    min-height: 100vh;
-    background: #121212;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+  padding: 16px;
+  /* Мінімальна висота - весь екран, але вона може бути більшою */
+  min-height: 100vh; 
+  background: #121212;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  /* ВАЖЛИВО: додаємо відступ знизу, щоб контент не ховався за BottomNav */
+  padding-bottom: 100px; 
+  
+  /* Дозволяємо вертикальний скрол */
+  overflow-y: auto;
+  
+  /* Щоб падінги не збільшували загальну ширину */
+  box-sizing: border-box;
+}
   
   .tabs {
     display: flex;
