@@ -4,7 +4,7 @@ import styles from './Nft.module.css';
 import BottomNav from '../../components/BottomNav/BottomNav';
 
 // Офіційна адреса колекції подарунків Telegram
-const COLLECTION_ADDR = "EQCA14o1-VWhS2asqC_0WBMtMFAZ7y5og_9pY1vS6KIn9S-6";
+const COLLECTION_ADDR = "0:82d78a35f955a14b66ae9c2fe140663c5019ef2e688fbd69635bd2e8ae49f9be";
 const TON_TO_UAH = 215; // Курс TON до гривні (можна теж брати через API)
 
 export default function Gifts() {
@@ -14,9 +14,10 @@ export default function Gifts() {
   const [loading, setLoading] = useState(false);
 
   // Функція завантаження даних
-  const fetchGifts = async (currentOffset) => {
+const fetchGifts = async (currentOffset) => {
     setLoading(true);
     try {
+      // Спробуйте змінити URL на цей, якщо попередній не працював:
       const response = await axios.get(
         `https://tonapi.io/v2/nfts/collections/${COLLECTION_ADDR}/items`,
         {
@@ -27,16 +28,17 @@ export default function Gifts() {
         }
       );
 
+      if (!response.data.nft_items) throw new Error("No data");
+
       const newItems = response.data.nft_items.map((item) => {
-        // Пробуємо дістати ціну (вона не завжди є в загальному списку, ставимо дефолт якщо порожньо)
         const priceTon = item.sale?.price?.value 
           ? (parseInt(item.sale.price.value) / 1000000000).toFixed(2) 
-          : (Math.random() * 5 + 1).toFixed(1); // Тимчасово рандом для візуалізації, якщо немає лістингу
+          : "1.5"; // Дефолтна ціна для тесту
 
         return {
           id: item.address,
-          name: item.metadata.name.replace("Gift ", ""),
-          image: item.metadata.image || item.previews?.[1]?.url,
+          name: item.metadata?.name?.replace("Gift ", "") || "NFT Gift",
+          image: item.metadata?.image || (item.previews && item.previews[1]?.url),
           priceTon: parseFloat(priceTon),
           priceUah: Math.round(priceTon * TON_TO_UAH),
         };
@@ -44,7 +46,15 @@ export default function Gifts() {
 
       setGifts((prev) => [...prev, ...newItems]);
     } catch (error) {
-      console.error("Помилка при завантаженні NFT:", error);
+      console.error("API Error:", error.response?.data || error.message);
+      
+      // ТИМЧАСОВО: Якщо API лежить, покажемо тестові дані, щоб ви могли бачити дизайн
+      if (gifts.length === 0) {
+        setGifts([
+          { id: '1', name: "Lollipop", image: "https://cache.fragment.com/obj/gift/lollipop-1.png", priceTon: 0.8, priceUah: 180 },
+          { id: '2', name: "Rose", image: "https://cache.fragment.com/obj/gift/rose-1.png", priceTon: 2.5, priceUah: 540 }
+        ]);
+      }
     } finally {
       setLoading(false);
     }
