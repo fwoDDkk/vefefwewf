@@ -6,7 +6,7 @@ const GIFTS_DATA = [
     { id: 1, name: "Snoop Cigar", image: "/cigar.png", priceTon: 9.2, priceUah: 800 },
     { id: 2, name: "Snoop Dog", image: "/snoopDog.png", priceTon: 4.22, priceUah: 400 },
     { id: 3, name: "Sakura Flower", image: "/Sakura Flower.png", priceTon: 7.47, priceUah: 650 },
-  { id: 4, name: "Stellar Rocket", image: "/Stellar Rocket", priceUah: 355, priceTon: 3.66 },
+  { id: 4, name: "Stellar Rocket", image: "/Stellar Rocket.png", priceUah: 355, priceTon: 3.66 },
   { id: 4, name: "Input Key", image: "/input Key.png", priceUah: 383, priceTon: 4.15 },
 ];
 
