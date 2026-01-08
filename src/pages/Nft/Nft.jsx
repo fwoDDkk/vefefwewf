@@ -17,7 +17,7 @@ export default function Gifts()  {
   );
 
   const handleBuy = (giftName) => {
-    const managerUsername = "StarcManager"; // ЗАМІНІТЬ НА ВАШ
+    const managerUsername = "StarcSupport"; // ЗАМІНІТЬ НА ВАШ
     const text = `Вітаю! Хочу купити NFT Gift: ${giftName}`;
     window.open(`https://t.me/${managerUsername}?text=${encodeURIComponent(text)}`, '_blank');
   };
