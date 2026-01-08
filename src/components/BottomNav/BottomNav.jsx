@@ -18,6 +18,12 @@ export default function BottomNav() {
         onClick={() => navigate('/orders')}
         className={location.pathname === '/orders' ? styles.active : ''}
       >
+        NFT Gifts
+      </button>
+      <button
+        onClick={() => navigate('/orders')}
+        className={location.pathname === '/orders' ? styles.active : ''}
+      >
         Історія
       </button>
     </nav>
