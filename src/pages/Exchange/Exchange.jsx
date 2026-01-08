@@ -85,7 +85,9 @@ export default function Exchange() {
       </div>
 
       <button className={styles.exchangeBtn}>Обміняти</button>
-      <BtnSellGift />
+     <div style={{ width: '100%', minHeight: '100px' }}>
+  <BtnSellGift />
+</div>
       <BottomNav />
     </div>
   )
