@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './Orders.module.css'
 import OrderItem from '../../components/OrderItem/OrderItem'
 import BottomNav from '../../components/BottomNav/BottomNav'
+import BtnSellGift from '../../components/BtnSellGift/BtnSellGift'
 
 export default function Orders() {
   const [orders, setOrders] = useState([])
@@ -21,6 +22,7 @@ export default function Orders() {
           <OrderItem key={i} order={order} />
         ))
       )}
+      <BtnSellGift />
       <BottomNav />
     </div>
   )

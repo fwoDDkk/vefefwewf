@@ -4,6 +4,7 @@ import styles from './Exchange.module.css'
 import TokenSelector from '../../components/TokenSelector/TokenSelector'
 import InputCard from '../../components/InputCard/InputCard'
 import BottomNav from '../../components/BottomNav/BottomNav'
+import BtnSellGift from '../../components/BtnSellGift/BtnSellGift'
 
 export default function Exchange() {
   const [mode, setMode] = useState('buy') // 'buy' | 'sell'
@@ -84,7 +85,7 @@ export default function Exchange() {
       </div>
 
       <button className={styles.exchangeBtn}>Обміняти</button>
-
+      <BtnSellGift />
       <BottomNav />
     </div>
   )

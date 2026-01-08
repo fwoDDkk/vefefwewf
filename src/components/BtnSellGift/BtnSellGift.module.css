@@ -1,0 +1,42 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.sellButton {
+  background: linear-gradient(135deg, #f3ba2f 0%, #ffcc4d 100%);
+  color: #000;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-weight: 800;
+  font-size: 14px;
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(243, 186, 47, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+/* Анімація підстрибування */
+.bounce {
+  animation: jump 0.8s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-12px); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-6px); }
+}
+
+.sellButton:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(243, 186, 47, 0.2);
+}
