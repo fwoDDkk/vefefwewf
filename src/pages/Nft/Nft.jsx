@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Gifts.module.css';
+import styles from './Nft.module.css';
 
 const GIFTS_DATA = [
   { id: 1, name: "Льодяник", emoji: "🍭", priceUah: 120, priceTon: 0.8 },
