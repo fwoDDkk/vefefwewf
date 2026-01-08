@@ -74,7 +74,7 @@ export default function Exchange() {
         <div className={styles.swapBtn} onClick={handleSwap}>⇅</div>
 
         <InputCard
-          label={mode === 'buy' ? 'Ви отримуєте1111 (зірки)' : 'Ви віддаєте (зірки)'}
+          label={mode === 'buy' ? 'Ви отримуєте (зірки)' : 'Ви віддаєте (зірки)'}
           token={toToken}
           amount={toAmount}
           onAmountChange={(v) => calculateExchange(v, 'to')}
