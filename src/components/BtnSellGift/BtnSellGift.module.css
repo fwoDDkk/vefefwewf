@@ -6,7 +6,7 @@
   position: relative;
   z-index: 50;
   margin-top: auto; /* Виштовхує кнопку вниз, якщо в колонці */
-  margin-bottom: 90px; /* Місце для BottomNav */
+  /* margin-bottom: 90px; */
 }
 
 .sellButton {
