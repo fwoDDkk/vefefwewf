@@ -73,7 +73,7 @@ export default function TonExchange() {
         disabled={!tonAmount || tonAmount <= 0}
         onClick={handleCreateTicket}
       >
-        Купити TON через менеджера
+        Купити TON 
       </button>
 
       <BottomNav />
