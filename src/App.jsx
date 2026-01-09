@@ -4,6 +4,7 @@ import axios from "axios";
 import Swap from "./screens/Swap/Swap";
 import Orders from "./screens/Orders/Orders";
 import Gifts from "./pages/Nft/Nft";
+import TonExchange from "./pages/TonExchange/TonExchange";
 
 const API_BASE = "https://oneback-d62p.onrender.com";
 
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="/" element={<Swap user={userData} />} />
         <Route path="/orders" element={<Orders user={userData} />} />
         <Route path="/gifts" element={<Gifts />} />
+        <Route path="/ton" element={<TonExchange />} />
       </Routes>
     </BrowserRouter>
   );
