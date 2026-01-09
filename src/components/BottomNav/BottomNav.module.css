@@ -6,7 +6,7 @@
     background: #1e1e2f;
     display: flex;
     justify-content: space-around;
-    padding: 23px 0;
+    padding: 25px 0;
     border-top: 1px solid #333;
     z-index: 999;
   }
@@ -15,7 +15,7 @@
     background: none;
     border: none;
     color: #ccc;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     flex: 1;
     text-align: center;
