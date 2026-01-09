@@ -1,12 +1,12 @@
 .nav {
     position: fixed;
-    bottom: 0;
+    bottom: 1px;
     left: 0;
     width: 100%;
     background: #1e1e2f;
     display: flex;
     justify-content: space-around;
-    padding: 21px 0;
+    padding: 23px 0;
     border-top: 1px solid #333;
     z-index: 999;
   }
