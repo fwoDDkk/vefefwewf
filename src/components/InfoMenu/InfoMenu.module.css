@@ -3,4 +3,5 @@
     height: 25px;
     background-color: white;
     color:blue;
+    z-index: 10;
 }
