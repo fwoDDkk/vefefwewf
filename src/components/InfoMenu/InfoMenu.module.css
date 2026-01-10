@@ -118,3 +118,54 @@
   color: white;
   outline: none;
 }
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 16px;
+    /* Піднімаємо над фоном */
+    position: relative; 
+    z-index: 99; 
+    margin-top: 20px;
+}
+
+.sellButton {
+    /* Напівпрозорий фон (Glassmorphism) */
+    background: rgba(243, 186, 47, 0.1); 
+    backdrop-filter: blur(5px);
+    
+    /* Тонка золотиста рамка */
+    border: 1px solid rgba(243, 186, 47, 0.3); 
+    color: rgba(255, 255, 255, 0.7);
+    
+    border-radius: 12px;
+    padding: 14px;
+    width: 100%;
+    max-width: 380px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Гарантуємо клікабельність */
+    pointer-events: auto; 
+}
+
+/* Коли кнопка стрибає - стає яскравішою */
+.bounce {
+    animation: jump 0.8s ease;
+    background: rgba(243, 186, 47, 0.3);
+    color: #fff;
+    border-color: #f3ba2f;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.sellButton:active {
+    transform: scale(0.98);
+}
