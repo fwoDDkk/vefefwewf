@@ -25,8 +25,8 @@ function OpenModal() {
     subtitle.style.color = '#f00';
   }
     return (
-        <div>
-        <button type="button" className={styles.btn} onClick={OpenModal}>?</button>
+        <div onClick={OpenModal}>
+        <button type="button" className={styles.btn} >?</button>
        <Modal
         isOpen={show}
         onAfterOpen={afterOpenModal}
