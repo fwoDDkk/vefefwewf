@@ -26,7 +26,7 @@ function OpenModal() {
   }
     return (
         <div>
-        <button className={styles.btn} onClick={OpenModal}>?</button>
+        <button type="button" className={styles.btn} onClick={OpenModal}>?</button>
        <Modal
         isOpen={show}
         onAfterOpen={afterOpenModal}
