@@ -122,7 +122,7 @@
 .wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     padding: 10px 16px;
     /* Піднімаємо над фоном */
     position: relative; 
