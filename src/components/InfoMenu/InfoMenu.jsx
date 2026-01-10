@@ -7,20 +7,31 @@ Modal.setAppElement('#root');
 export default function InfoMenu() {
   const [show, setShow] = useState(false);
 
+  // Функція відкриття: зупиняємо поширення події
   const openModal = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setShow(true);
   };
 
-  const closeModal = () => setShow(false);
+  // Функція закриття: також зупиняємо поширення
+  const closeModal = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setShow(false);
+  };
 
   return (
-    <div onClick={openModal} className={styles.container}>
-      <button type="button" className={styles.btn} >?</button>
+    /* Видаляємо onClick звідси, щоб уникнути конфліктів */
+    <div className={styles.wrapper}>
+      <button type="button" className={styles.btn} onClick={openModal}>?</button>
 
       <Modal
         isOpen={show}
-        onRequestClose={closeModal}
+        onRequestClose={closeModal} // Це закриває по кліку за межами та по Esc
+        shouldCloseOnOverlayClick={true} // Явно вказуємо закриття по оверлею
         overlayClassName={styles.modalOverlay}
         className={styles.modalContent}
         contentLabel="Інформація про сервіс"
@@ -50,7 +61,13 @@ export default function InfoMenu() {
           </div>
         </div>
 
-        <button type='button' className={styles.closeBtn} onClick={closeModal}>Зрозуміло</button>
+        {/* Додаємо e.stopPropagation сюди */}
+        <button 
+          className={styles.closeBtn} 
+          onClick={closeModal}
+        >
+          Зрозуміло
+        </button>
       </Modal>
     </div>
   )
