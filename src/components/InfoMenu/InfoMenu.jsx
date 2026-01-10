@@ -1,50 +1,57 @@
 import { useState } from "react"
 import Modal from 'react-modal'
 import styles from './InfoMenu.module.css'
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+
+Modal.setAppElement('#root');
+
 export default function InfoMenu() {
-    let subtitle;
-const [show, setShow] = useState(false);
-function OpenModal() {
+  const [show, setShow] = useState(false);
+
+  const openModal = (e) => {
+    e.stopPropagation();
     setShow(true);
-   }
-   function closeModal() {
-    setShow(false);
-   }
-     function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-    return (
-        <div onClick={OpenModal}>
-        <button type="button" className={styles.btn} >?</button>
-       <Modal
+  };
+
+  const closeModal = () => setShow(false);
+
+  return (
+    <div>
+      <button type="button" className={styles.btn} onClick={openModal}>?</button>
+
+      <Modal
         isOpen={show}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        overlayClassName={styles.modalOverlay}
+        className={styles.modalContent}
+        contentLabel="Інформація про сервіс"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <h2 className={styles.title}>Про наш сервіс</h2>
+        
+        <ul className={styles.infoList}>
+          <li className={styles.infoItem}>
+            <span className={styles.icon}>⭐</span>
+            <div><strong>Stars:</strong> Продаж та купівля зірок Telegram за грн.</div>
+          </li>
+          <li className={styles.infoItem}>
+            <span className={styles.icon}>💎</span>
+            <div><strong>TON:</strong> Обмін TON на карту за вигідним курсом.</div>
+          </li>
+          <li className={styles.infoItem}>
+            <span className={styles.icon}>🎁</span>
+            <div><strong>NFT Gifts:</strong> Купівля та продаж NFT подарунків за грн/TON.</div>
+          </li>
+        </ul>
+
+        <div className={styles.supportBox}>
+          <span className={styles.icon}>👨‍💻</span>
+          <div className={styles.supportText}>
+            <strong>Техпідтримка:</strong><br/>
+            З усіх питань пишіть: <a href="https://t.me/StarcSupport" target="_blank" rel="noreferrer" className={styles.link}>@StarcSupport</a>
+          </div>
+        </div>
+
+        <button className={styles.closeBtn} onClick={closeModal}>Зрозуміло</button>
       </Modal>
-      </div>
-    )
+    </div>
+  )
 }
