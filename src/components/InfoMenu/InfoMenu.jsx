@@ -15,7 +15,7 @@ export default function InfoMenu() {
   const closeModal = () => setShow(false);
 
   return (
-    <div onClick={openModal}>
+    <div onClick={openModal} className={styles.container}>
       <button type="button" className={styles.btn} >?</button>
 
       <Modal
