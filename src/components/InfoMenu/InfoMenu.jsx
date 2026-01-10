@@ -50,7 +50,7 @@ export default function InfoMenu() {
           </div>
         </div>
 
-        <button className={styles.closeBtn} onClick={closeModal}>Зрозуміло</button>
+        <button type='button' className={styles.closeBtn} onClick={closeModal}>Зрозуміло</button>
       </Modal>
     </div>
   )
