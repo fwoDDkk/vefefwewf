@@ -1,7 +1,7 @@
 .btn {
   width: 28px;
   height: 28px;
-  background: rgba(243, 186, 47, 0.2);
+  background: rgba(243, 186, 47, 0.15);
   color: #f3ba2f;
   border: 1px solid rgba(243, 186, 47, 0.4);
   border-radius: 50%;
@@ -10,36 +10,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
 }
 
-.btn:active {
-  transform: scale(0.9);
-  background: rgba(243, 186, 47, 0.4);
-}
-
-/* Стилі всередині модалки (передаються через className в react-modal) */
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8) !important;
-  backdrop-filter: blur(5px);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(8px);
   z-index: 1000;
 }
 
 .modalContent {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 350px;
+  max-width: 340px;
   background: #1a1a2e;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 24px;
   color: white;
   outline: none;
@@ -48,8 +37,8 @@
 .title {
   color: #f3ba2f;
   margin-top: 0;
-  font-size: 20px;
   text-align: center;
+  font-size: 20px;
 }
 
 .infoList {
@@ -60,25 +49,43 @@
 
 .infoItem {
   display: flex;
-  align-items: flex-start;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
   font-size: 14px;
-  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.icon {
-  font-size: 18px;
+/* Новий блок техпідтримки */
+.supportBox {
+  background: rgba(243, 186, 47, 0.1);
+  border: 1px dashed rgba(243, 186, 47, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
 }
+
+.supportText {
+  font-size: 13px;
+}
+
+.link {
+  color: #f3ba2f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.icon { font-size: 18px; }
 
 .closeBtn {
   width: 100%;
   background: #f3ba2f;
-  color: black;
+  color: #000;
   border: none;
   border-radius: 12px;
-  padding: 12px;
-  font-weight: bold;
+  padding: 14px;
+  font-weight: 800;
+  margin-top: 20px;
   cursor: pointer;
-  margin-top: 10px;
 }
