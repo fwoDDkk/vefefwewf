@@ -12,6 +12,7 @@ const customStyles = {
   },
 };
 export default function InfoMenu() {
+    let subtitle;
 const [show, setShow] = useState(false);
 function OpenModal() {
     setShow(true);
@@ -19,6 +20,10 @@ function OpenModal() {
    function closeModal() {
     setShow(false);
    }
+     function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
     return (
         <div>
         <button className={styles.btn} onClick={OpenModal}>?</button>
