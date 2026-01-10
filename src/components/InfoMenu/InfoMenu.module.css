@@ -122,12 +122,12 @@
 .wrapper {
     width: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: left;
     padding: 10px 16px;
     /* Піднімаємо над фоном */
     position: relative; 
     z-index: 99; 
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .sellButton {
