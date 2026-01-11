@@ -34,7 +34,7 @@ export default function TonExchange() {
     <div className={styles.container}>
       {/* Секція введення TON */}
       <div className={styles.card}>
-        <span className={styles.label}>Ви отримуєте (💎 TON)</span>
+        <span className={styles.label}>Ви отримуєте (<img src='/toncoin-ton-logo.svg' alt="ton" /> TON)</span>
         <div className={styles.inputGroup}>
           <input 
             type="number" 
