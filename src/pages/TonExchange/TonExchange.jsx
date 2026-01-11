@@ -65,7 +65,7 @@ export default function TonExchange() {
       </div>
 
       <div className={styles.rateInfo}>
-        💰 Курс: 1 TON ≈ {currentRate.toFixed(2)} грн ($2.5)
+        💰 Курс: 1 TON <img src='/toncoin-ton-logo.svg' alt="ton" className={styles.ton} /> ≈ {currentRate.toFixed(2)} грн ($2.5)
       </div>
 
       <button 
