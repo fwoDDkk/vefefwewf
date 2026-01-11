@@ -44,7 +44,7 @@ export default function InfoMenu() {
             <div><strong>Stars:</strong> Продаж та купівля зірок Telegram за грн.</div>
           </li>
           <li className={styles.infoItem}>
-            <span className={styles.icon}>💎</span>
+            <span className={styles.icon}><img src='/toncoin-ton-logo.svg' alt="ton" className={styles.ton} /></span>
             <div><strong>TON:</strong> Обмін TON на карту за вигідним курсом.</div>
           </li>
           <li className={styles.infoItem}>

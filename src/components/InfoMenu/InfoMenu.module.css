@@ -178,3 +178,7 @@
 .sellButton:active {
     transform: scale(0.98);
 }
+.ton {
+    width: 25px;
+    height: 25px;
+}
