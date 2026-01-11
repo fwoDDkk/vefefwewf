@@ -102,3 +102,7 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.ton {
+    width: 15px;
+    height: 15px;
+}
