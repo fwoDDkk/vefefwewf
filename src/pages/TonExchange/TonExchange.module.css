@@ -109,3 +109,10 @@
          position: relative;
     top: 2px;
 }
+.ton1 {
+    width: 15px;
+    height: 15px;
+    /* display: flex; */
+         /* position: relative;
+    top: 2px; */
+}
